@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:worship_songs/notifier/theme_change_notifier.dart';
+import 'package:worship_songs/utils/theme_icon_utils.dart';
 
 class SettingsView extends StatelessWidget {
   const SettingsView({super.key});
@@ -32,12 +33,12 @@ class _AppearanceDropdown extends StatelessWidget {
       builder: (context, theme, child) => DropdownMenu(
         width: 200,
         initialSelection: theme,
-        leadingIcon: Icon(Icons.eighteen_mp),
+        leadingIcon: getIcon(theme),
         dropdownMenuEntries: ThemeMode.values
             .map(
               (themeMode) =>
                   DropdownMenuEntry(
-                    leadingIcon: Icon(Icons.eighteen_mp),
+                    leadingIcon: getIcon(themeMode),
                       value: themeMode,
                       label: themeMode.name
                   ),
