@@ -1,12 +1,29 @@
 import 'package:flutter/material.dart';
 
-ThemeData defaultLightTheme = ThemeData(
-  dropdownMenuTheme: DropdownMenuThemeData(
-    inputDecorationTheme: InputDecorationTheme(
-      border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
-    ),
-  ),
-  brightness: Brightness.light,
+final double _iconSize = 20;
+final double _dropdownRadius = 10;
+
+ThemeData defaultLightTheme = _buildTheme(brightness: Brightness.light);
+
+ThemeData defaultDarkTheme = _buildTheme(brightness: Brightness.dark);
+
+ThemeData _buildTheme({required Brightness brightness}) => ThemeData(
+  brightness: brightness,
+  iconTheme: _iconThemeData(),
+  iconButtonTheme: _iconButtonThemeData(),
+  dropdownMenuTheme: _dropdownMenuThemeData(),
 );
 
-ThemeData defaultDarkTheme = ThemeData(brightness: Brightness.dark);
+IconThemeData _iconThemeData() => IconThemeData(size: _iconSize);
+
+IconButtonThemeData _iconButtonThemeData() => IconButtonThemeData(
+  style: ButtonStyle(iconSize: WidgetStatePropertyAll(_iconSize)),
+);
+
+DropdownMenuThemeData _dropdownMenuThemeData() => DropdownMenuThemeData(
+  inputDecorationTheme: InputDecorationTheme(
+    border: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(_dropdownRadius),
+    ),
+  ),
+);
