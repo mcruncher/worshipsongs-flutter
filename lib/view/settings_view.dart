@@ -11,19 +11,16 @@ class SettingsView extends StatelessWidget {
       appBar: AppBar(leading: BackButton()),
       body: Row(
         spacing: 40,
-        children: [_AppearanceLabel(), _AppearanceDropdown()],
+        children: [_createAppearanceLabel(), _AppearanceDropdown()],
       ),
     );
   }
 }
 
-class _AppearanceLabel extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) => Padding(
-    padding: EdgeInsetsGeometry.symmetric(vertical: 10, horizontal: 30),
-    child: Text("Appearance"),
-  );
-}
+Padding _createAppearanceLabel() => Padding(
+  padding: EdgeInsetsGeometry.symmetric(vertical: 10, horizontal: 30),
+  child: Text("Appearance"),
+);
 
 class _AppearanceDropdown extends StatelessWidget {
   @override
@@ -36,12 +33,11 @@ class _AppearanceDropdown extends StatelessWidget {
         leadingIcon: getIcon(theme),
         dropdownMenuEntries: ThemeMode.values
             .map(
-              (themeMode) =>
-                  DropdownMenuEntry(
-                    leadingIcon: getIcon(themeMode),
-                      value: themeMode,
-                      label: themeMode.name
-                  ),
+              (themeMode) => DropdownMenuEntry(
+                leadingIcon: getIcon(themeMode),
+                value: themeMode,
+                label: themeMode.name,
+              ),
             )
             .toList(),
 
