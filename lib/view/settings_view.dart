@@ -15,12 +15,12 @@ class SettingsView extends StatelessWidget {
       ),
     );
   }
-}
 
-Padding _createAppearanceLabel() => Padding(
-  padding: EdgeInsetsGeometry.symmetric(vertical: 10, horizontal: 30),
-  child: Text("Appearance"),
-);
+  Widget _createAppearanceLabel() => Padding(
+    padding: EdgeInsetsGeometry.symmetric(vertical: 10, horizontal: 30),
+    child: Text("Appearance"),
+  );
+}
 
 class _AppearanceDropdown extends StatelessWidget {
   @override
