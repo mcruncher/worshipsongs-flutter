@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:worship_songs/domain/song.dart';
-import 'package:worship_songs/service/song_service.dart';
-import 'package:worship_songs/service/song_service_impl.dart';
+import 'package:worship_songs/provider/song_provider.dart';
 
-class HomeView extends StatelessWidget {
-  HomeView({super.key});
-
-  final SongService _songService = SongServiceImpl();
+class HomeView extends ConsumerWidget {
+  const HomeView({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    List<Song> songs = _songService.getSongs();
+  Widget build(BuildContext context, WidgetRef ref) {
+    List<Song> songs = ref.watch(songsProvider);
 
     return ListView.builder(
       shrinkWrap: true,
