@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:worship_songs/notifier/theme_change_notifier.dart';
 import 'package:worship_songs/theme.dart';
+import 'package:worship_songs/view/home_view.dart';
 import 'package:worship_songs/view/settings_view.dart';
 
 void main() => runApp(const MyApp());
@@ -33,5 +34,6 @@ class _HomePage extends StatelessWidget {
         ),
       ),
     ),
+    body: HomeView(),
   );
 }
