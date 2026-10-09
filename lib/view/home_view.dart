@@ -1,21 +1,39 @@
 import 'package:flutter/material.dart';
+import 'package:worship_songs/domain/song.dart';
+import 'package:worship_songs/service/song_service.dart';
+import 'package:worship_songs/service/song_service_impl.dart';
 
 class HomeView extends StatelessWidget {
-  const HomeView({super.key});
+  HomeView({super.key});
+
+  final SongService _songService = SongServiceImpl();
 
   @override
-  Widget build(BuildContext context) => Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 25),
-      child: Column(
-        children: [
-          Center(
-            child: Title(color: Colors.black, child: const Text("Songs")),
-          ),
-          const Padding(padding: EdgeInsetsGeometry.symmetric(vertical: 10)),
-          const _CardView(songTitle: "Bless The Lord", artist: "Matt RedMann"),
-        ],
-      ),
+  Widget build(BuildContext context) {
+    List<Song> songs = _songService.getSongs();
+
+    return ListView.builder(
+      shrinkWrap: true,
+      scrollDirection: Axis.vertical,
+      itemCount: songs.length + 1,
+      itemBuilder: (context, index) {
+        Widget widget = index == 0
+            ? Padding(
+                padding: const EdgeInsets.only(bottom: 10),
+                child: Center(child: const Text("Songs")),
+              )
+            : _CardView(
+                songTitle: songs.elementAt(index - 1).title,
+                artist: songs.elementAt(index - 1).artistName,
+              );
+
+        return Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: widget,
+        );
+      },
     );
+  }
 }
 
 class _CardView extends StatelessWidget {
