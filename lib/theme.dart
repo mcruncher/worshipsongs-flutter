@@ -14,6 +14,7 @@ ThemeData _buildTheme({required Brightness brightness}) => ThemeData(
   iconButtonTheme: _iconButtonThemeData(),
   dropdownMenuTheme: _dropdownMenuThemeData(),
   cardTheme: _cardThemeData(),
+  appBarTheme: _appBarTheme(),
   splashColor: _splashColor,
 );
 
@@ -34,4 +35,9 @@ DropdownMenuThemeData _dropdownMenuThemeData() => DropdownMenuThemeData(
 CardThemeData _cardThemeData() => CardThemeData(
   clipBehavior: Clip.hardEdge,
   margin: EdgeInsetsGeometry.only(top: 13, left: 10, right: 10),
+);
+
+AppBarTheme _appBarTheme() => AppBarTheme(
+  scrolledUnderElevation: 0,
+  surfaceTintColor: Colors.transparent,
 );
