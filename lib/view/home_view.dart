@@ -26,7 +26,7 @@ class HomeView extends ConsumerWidget {
               );
 
         return Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
+          padding: const EdgeInsets.symmetric(horizontal: 15),
           child: widget,
         );
       },
