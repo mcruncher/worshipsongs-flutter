@@ -52,12 +52,16 @@ class _CardView extends StatelessWidget {
     ),
   );
 
-  Padding buildCardContent() => Padding(
-    padding: EdgeInsetsGeometry.symmetric(vertical: 12, horizontal: 20),
-    child: Column(
-      mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [buildCardTitle(), buildCardSubtitle()],
+  SingleChildScrollView buildCardContent() => SingleChildScrollView(
+    physics: const NeverScrollableScrollPhysics(),
+    child: Padding(
+      padding: EdgeInsetsGeometry.symmetric(vertical: 12, horizontal: 20),
+      child: Column(
+        spacing: 5,
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [buildCardTitle(), buildCardSubtitle()],
+      ),
     ),
   );
 
@@ -66,15 +70,12 @@ class _CardView extends StatelessWidget {
     style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
   );
 
-  Padding buildCardSubtitle() => Padding(
-    padding: const EdgeInsets.only(top: 8.0),
-    child: Text(
-      _artist,
-      style: TextStyle(
-        color: Colors.grey.shade500,
-        fontSize: 11,
-        fontWeight: FontWeight.w200,
-      ),
+  Text buildCardSubtitle() => Text(
+    _artist,
+    style: TextStyle(
+      color: Colors.grey.shade500,
+      fontSize: 11,
+      fontWeight: FontWeight.w500,
     ),
   );
 }
