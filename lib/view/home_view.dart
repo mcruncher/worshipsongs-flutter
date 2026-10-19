@@ -1,36 +1,39 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:worship_songs/domain/song.dart';
-import 'package:worship_songs/provider/song_provider.dart';
+import 'package:worship_songs/provider/view_song_provider.dart';
 
 class HomeView extends ConsumerWidget {
   const HomeView({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    List<Song> songs = ref.watch(songsProvider);
+    return ref
+        .watch(viewSongsProvider)
+        .when(
+          data: (data) => ListView.builder(
+            shrinkWrap: true,
+            scrollDirection: Axis.vertical,
+            itemCount: data.length + 1,
+            itemBuilder: (context, index) {
+              Widget widget = index == 0
+                  ? Padding(
+                      padding: const EdgeInsets.only(bottom: 10),
+                      child: Center(child: const Text("Songs")),
+                    )
+                  : _CardView(
+                      songTitle: data.elementAt(index - 1).title,
+                      artist: data.elementAt(index - 1).artistName,
+                    );
 
-    return ListView.builder(
-      shrinkWrap: true,
-      scrollDirection: Axis.vertical,
-      itemCount: songs.length + 1,
-      itemBuilder: (context, index) {
-        Widget widget = index == 0
-            ? Padding(
-                padding: const EdgeInsets.only(bottom: 10),
-                child: Center(child: const Text("Songs")),
-              )
-            : _CardView(
-                songTitle: songs.elementAt(index - 1).title,
-                artist: songs.elementAt(index - 1).artistName,
+              return Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 15),
+                child: widget,
               );
-
-        return Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15),
-          child: widget,
+            },
+          ),
+          error: (error, stackTrace) => Text("error $stackTrace"),
+          loading: () => Text("Wait"),
         );
-      },
-    );
   }
 }
 
