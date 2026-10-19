@@ -7,18 +7,18 @@ import 'package:sqflite/sqflite.dart';
 
 part 'database_provider.g.dart';
 
+const _sqlFilename = "songs.sqlite";
+
 @riverpod
 Future<Database> database(Ref ref) async {
   String databasesPath = await getDatabasesPath();
-  var path = join(databasesPath, "songs.sqlite");
+  var path = join(databasesPath, _sqlFilename);
   var exists = await databaseExists(path);
 
   if (!exists) {
     await Directory(dirname(path)).create(recursive: true);
 
-    ByteData data = await rootBundle.load(
-      url.join("assets/db", "songs.sqlite"),
-    );
+    ByteData data = await rootBundle.load(url.join("assets/db", _sqlFilename));
 
     List<int> bytes = data.buffer.asUint8List(
       data.offsetInBytes,
