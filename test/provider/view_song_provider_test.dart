@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:sqflite_common_ffi/sqflite_common_ffi.dart';
@@ -30,6 +31,13 @@ void main() {
 
       expectLater(viewSongs.first, firstSong);
       expectLater(viewSongs.last, lastSong);
+    });
+
+    test("Get total songs", () async {
+      var providerContainer = ProviderContainer.test();
+      int totalSongs = await providerContainer.read(totalSongsProvider.future);
+
+      expectLater(totalSongs, 1532);
     });
   });
 }

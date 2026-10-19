@@ -22,4 +22,10 @@ class ViewSongRepositoryImpl extends ViewSongRepository {
     }
     return viewSongs;
   }
+
+  @override
+  Future<int> getTotalSongs() {
+    // TODO: implement getTotalSongs
+    throw UnimplementedError();
+  }
 }
