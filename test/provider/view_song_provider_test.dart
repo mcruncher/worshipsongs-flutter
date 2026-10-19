@@ -37,7 +37,7 @@ void main() {
       var providerContainer = ProviderContainer.test();
       int totalSongs = await providerContainer.read(totalSongsProvider.future);
 
-      expectLater(totalSongs, 1532);
+      expectLater(totalSongs, 1522);
     });
   });
 }

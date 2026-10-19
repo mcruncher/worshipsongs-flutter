@@ -24,8 +24,6 @@ class ViewSongRepositoryImpl extends ViewSongRepository {
   }
 
   @override
-  Future<int> getTotalSongs() {
-    // TODO: implement getTotalSongs
-    throw UnimplementedError();
-  }
+  Future<int> getTotalSongs() async =>
+      (await _viewSongService.getSongs()).length;
 }
