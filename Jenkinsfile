@@ -15,9 +15,17 @@ pipeline {
 
         stage('Unit Tests & Quality') {
             steps {
-                runFlutterTests()
+                sh '''
+                  flutter test --coverage
+                '''
+
+                def sonarScanner = "${tool 'SonarQube Scanner'}"
+                withSonarQubeEnv('SonarQubeK8s') { // Name of SonarQube server in Jenkins
+                    withEnv(["SONAR_HOST_URL=https://sonarcloud.io/summary"]) {
+                        sh "${sonarScanner}/bin/sonar-scanner"
+                    }
+                }
             }
         }
     }
-
 }
