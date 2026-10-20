@@ -18,13 +18,11 @@ void main() {
       var firstSong = ViewSong(
         id: 3,
         title: "Glory (3) To the lamb",
-        artistName: "Author Unknown {ஆசிரியர் தெரியவில்லை}",
       );
 
       var lastSong = ViewSong(
         id: 2559,
         title: "My Worth Is Not In What I Own",
-        artistName: "Kristyn Getty",
       );
 
       var viewSongs = await providerContainer.read(viewSongsProvider.future);

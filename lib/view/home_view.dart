@@ -20,10 +20,7 @@ class HomeView extends ConsumerWidget {
                     padding: const EdgeInsets.only(bottom: 10),
                     child: Center(child: const Text("Songs")),
                   )
-                : _CardView(
-                    songTitle: data.elementAt(index - 1).title,
-                    artist: data.elementAt(index - 1).artistName,
-                  );
+                : _CardView(songTitle: data.elementAt(index - 1).title);
 
             return Padding(
               padding: const EdgeInsets.symmetric(horizontal: 15),
@@ -35,20 +32,17 @@ class HomeView extends ConsumerWidget {
         loading: () => Skeletonizer(
           child: ListView.builder(
             itemCount: 9,
-            itemBuilder: (context, index) => _CardView(
-              songTitle: "Some song title",
-              artist: "Some artist name (i don't know)",
-            ),
+            itemBuilder: (context, index) =>
+                _CardView(songTitle: "Some song title"),
           ),
         ),
       );
 }
 
 class _CardView extends StatelessWidget {
-  const new({required this._songTitle, required this._artist});
+  const new({required this._songTitle});
 
   final String _songTitle;
-  final String _artist;
 
   @override
   Widget build(BuildContext context) => Padding(
@@ -56,21 +50,17 @@ class _CardView extends StatelessWidget {
     child: Card.outlined(
       child: SizedBox(
         width: 500,
-        height: 60,
-        child: InkWell(onTap: () => {}, child: buildCardContent()),
-      ),
-    ),
-  );
-
-  SingleChildScrollView buildCardContent() => SingleChildScrollView(
-    physics: const NeverScrollableScrollPhysics(),
-    child: Padding(
-      padding: EdgeInsetsGeometry.symmetric(vertical: 12, horizontal: 20),
-      child: Column(
-        spacing: 5,
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [buildCardTitle(), buildCardSubtitle()],
+        height: 50,
+        child: InkWell(
+          onTap: () => {},
+          child: Container(
+            alignment: AlignmentGeometry.centerLeft,
+            child: Padding(
+              padding: const EdgeInsets.only(left: 15),
+              child: buildCardTitle(),
+            ),
+          ),
+        ),
       ),
     ),
   );
@@ -78,14 +68,5 @@ class _CardView extends StatelessWidget {
   Text buildCardTitle() => Text(
     _songTitle,
     style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
-  );
-
-  Text buildCardSubtitle() => Text(
-    _artist,
-    style: TextStyle(
-      color: Colors.grey.shade500,
-      fontSize: 11,
-      fontWeight: FontWeight.w500,
-    ),
   );
 }

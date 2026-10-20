@@ -16,7 +16,6 @@ class ViewSongRepositoryImpl extends ViewSongRepository {
         ViewSong(
           id: int.parse(element["id"].toString()),
           title: element["title"].toString(),
-          artistName: element["display_name"].toString(),
         ),
       );
     }
