@@ -5,7 +5,7 @@ class ViewSong {
   new({required this.id, required this.title});
 
   @override
-  int get hashCode => title.hashCode;
+  int get hashCode => id.hashCode + title.hashCode;
 
   @override
   bool operator ==(Object other) =>
