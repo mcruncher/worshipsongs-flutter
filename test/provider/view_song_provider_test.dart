@@ -30,12 +30,5 @@ void main() {
       expectLater(viewSongs.first, firstSong);
       expectLater(viewSongs.last, lastSong);
     });
-
-    test("Get total songs", () async {
-      var providerContainer = ProviderContainer.test();
-      int totalSongs = await providerContainer.read(totalSongsProvider.future);
-
-      expectLater(totalSongs, 1522);
-    });
   });
 }

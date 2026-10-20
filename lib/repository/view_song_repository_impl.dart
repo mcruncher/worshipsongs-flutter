@@ -21,8 +21,4 @@ class ViewSongRepositoryImpl extends ViewSongRepository {
     }
     return viewSongs;
   }
-
-  @override
-  Future<int> getTotalSongs() async =>
-      (await _viewSongService.getSongs()).length;
 }

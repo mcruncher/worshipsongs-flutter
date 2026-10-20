@@ -20,7 +20,3 @@ ViewSongRepository _viewSongRepository(Ref ref) => ViewSongRepositoryImpl(
 @riverpod
 Future<List<ViewSong>> viewSongs(Ref ref) =>
     ref.watch(_viewSongRepositoryProvider).getViewSongs();
-
-@riverpod
-Future<int> totalSongs(Ref ref) =>
-    ref.watch(_viewSongRepositoryProvider).getTotalSongs();
