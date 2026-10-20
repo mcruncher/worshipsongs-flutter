@@ -15,7 +15,7 @@ pipeline {
 
         stage('Unit Tests & Quality') {
             steps {
-                runFlutterTests()
+                runFlutterTests("SonarQubeCloud")
             }
         }
     }
