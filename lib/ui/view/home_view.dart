@@ -9,7 +9,7 @@ class HomeView extends StatelessWidget {
   Widget build(BuildContext context) => Scaffold(
     appBar: AppBar(
       leading: IconButton(
-        icon: Icon(Icons.settings_rounded),
+        icon: const Icon(Icons.settings_rounded),
         onPressed: () => Navigator.push(
           context,
           MaterialPageRoute(builder: (BuildContext context) => const SettingsView()),
