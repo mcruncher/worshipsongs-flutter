@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:worship_songs/notifier/theme_change_notifier.dart';
 import 'package:worship_songs/theme.dart';
 import 'package:worship_songs/view/home_view.dart';
-import 'package:worship_songs/view/settings_view.dart';
 
 void main() => runApp(ProviderScope(child: MyApp()));
 
@@ -18,23 +17,7 @@ class MyApp extends StatelessWidget {
       theme: defaultLightTheme,
       darkTheme: defaultDarkTheme,
       themeMode: value,
-      home: _HomePage(),
+      home: HomeView(),
     ),
-  );
-}
-
-class _HomePage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) => Scaffold(
-    appBar: AppBar(
-      leading: IconButton(
-        icon: Icon(Icons.settings_rounded),
-        onPressed: () => Navigator.push(
-          context,
-          MaterialPageRoute(builder: (BuildContext context) => SettingsView()),
-        ),
-      ),
-    ),
-    body: HomeView(),
   );
 }
