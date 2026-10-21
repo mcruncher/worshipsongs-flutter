@@ -2,7 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:sqflite_common_ffi/sqflite_common_ffi.dart';
 import 'package:worship_songs/domain/song.dart';
-import 'package:worship_songs/provider/song_provider.dart';
+import 'package:worship_songs/utils/provider/song_provider.dart';
 
 void main() {
   setUpAll(() {

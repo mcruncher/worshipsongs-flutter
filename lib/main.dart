@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:worship_songs/notifier/theme_change_notifier.dart';
+import 'package:worship_songs/utils/notifier/theme_change_notifier.dart';
 import 'package:worship_songs/theme.dart';
-import 'package:worship_songs/view/home_view.dart';
+import 'package:worship_songs/ui/view/home_view.dart';
 
 void main() => runApp(ProviderScope(child: MyApp()));
 

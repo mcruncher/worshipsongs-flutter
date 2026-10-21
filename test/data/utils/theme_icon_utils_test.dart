@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:worship_songs/utils/theme_icon_utils.dart';
+import 'package:worship_songs/data/utils/theme_icon_utils.dart';
 
 void main() {
   group("Get icon", () {

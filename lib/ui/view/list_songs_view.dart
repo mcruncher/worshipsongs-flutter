@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import 'package:worship_songs/domain/song.dart';
-import 'package:worship_songs/provider/song_provider.dart';
+import 'package:worship_songs/utils/provider/song_provider.dart';
 
 class ListSongsView extends ConsumerWidget {
   const ListSongsView({super.key});
