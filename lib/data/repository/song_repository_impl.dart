@@ -8,7 +8,7 @@ class SongRepositoryImpl extends SongRepository {
   new({required this._viewSongService});
 
   @override
-  Future<List<Song>> getViewSongs() async {
+  Future<List<Song>> getSongs() async {
     List<Song> viewSongs = [];
 
     for (var element in await _viewSongService.getSongs()) {
