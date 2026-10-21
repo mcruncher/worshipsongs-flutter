@@ -7,6 +7,6 @@ class SongServiceImpl extends SongService {
   new({required this._database});
 
   @override
-  Future<List<Map<String, Object?>>> getSongs() async =>
-      (await _database).query("songs", columns: ["id", "title"]);
+  Future<List<Map<String, Object?>>> getSongs() async => (await _database)
+      .query("songs", columns: ["id", "title"], orderBy: "title");
 }

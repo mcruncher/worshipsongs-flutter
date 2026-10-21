@@ -15,8 +15,8 @@ void main() {
     test("Get songs", () async {
       // setup
       var providerContainer = ProviderContainer.test();
-      var firstSong = Song(id: 2, title: "One way Jesus");
-      var lastSong = Song(id: 2559, title: "My Worth Is Not In What I Own");
+      var firstSong = Song(id: 2281, title: "(Let Us Be)One Voice");
+      var lastSong = Song(id: 964, title: "Yutham Yutham Kartharudayathu");
 
       // when
       var viewSongs = await providerContainer.read(songsProvider.future);
