@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:skeletonizer/skeletonizer.dart';
-import 'package:worship_songs/domain/view_song.dart';
-import 'package:worship_songs/provider/view_song_provider.dart';
+import 'package:worship_songs/domain/song.dart';
+import 'package:worship_songs/provider/song_provider.dart';
 
 class HomeView extends ConsumerWidget {
   const HomeView({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) => ref
-      .watch(viewSongsProvider)
+      .watch(songsProvider)
       .when(
         data: (data) => _listSongs(data),
         error: (error, stackTrace) => Text("error $stackTrace"),
         loading: () => _skeletonView(),
       );
 
-  ListView _listSongs(List<ViewSong> data) => ListView.builder(
+  ListView _listSongs(List<Song> data) => ListView.builder(
     shrinkWrap: true,
     scrollDirection: Axis.vertical,
     itemCount: data.length + 1,

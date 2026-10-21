@@ -1,4 +1,4 @@
-class ViewSong {
+class Song {
   int id;
   String title;
 
@@ -9,7 +9,7 @@ class ViewSong {
 
   @override
   bool operator ==(Object other) =>
-      (other is ViewSong) ? (id == other.id) && (title == other.title) : false;
+      (other is Song) ? (id == other.id) && (title == other.title) : false;
 
   @override
   String toString() => "Id: $id, Title: $title";
