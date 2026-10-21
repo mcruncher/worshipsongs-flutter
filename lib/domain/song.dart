@@ -1,16 +1,6 @@
-class Song {
-  int id;
-  String title;
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-  new({required this.id, required this.title});
+part 'song.freezed.dart';
 
-  @override
-  int get hashCode => id.hashCode + title.hashCode;
-
-  @override
-  bool operator ==(Object other) =>
-      (other is Song) ? (id == other.id) && (title == other.title) : false;
-
-  @override
-  String toString() => "Id: $id, Title: $title";
-}
+@freezed
+class Song({required final int id, required final String title}) with _$Song;

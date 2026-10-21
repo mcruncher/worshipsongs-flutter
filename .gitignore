@@ -11,6 +11,7 @@ lib/l10n/app_localizations*.dart
 
 # Other generated files
 *.g.dart
+*.freezed.dart
 *.mocks.dart
 
 # IDE

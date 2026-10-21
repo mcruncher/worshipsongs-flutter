@@ -7,7 +7,7 @@ void main() {
   group("Song", () {
     test("To string", () {
       var viewSong = Song(id: 1, title: "Blessed be Your Name");
-      expect(viewSong.toString(), "Id: 1, Title: Blessed be Your Name");
+      expect(viewSong.toString(), "Song(id: 1, title: Blessed be Your Name)");
     });
 
     test("Hash code", () {
