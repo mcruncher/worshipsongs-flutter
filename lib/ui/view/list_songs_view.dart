@@ -38,9 +38,9 @@ class ListSongsView extends ConsumerWidget {
     ),
   );
 
-  Padding _pageTitle() => Padding(
-    padding: const EdgeInsets.only(bottom: 10),
-    child: Center(child: const Text("Songs")),
+  Padding _pageTitle() => const Padding(
+    padding: EdgeInsets.only(bottom: 10),
+    child: Center(child: Text("Songs")),
   );
 
   Padding _buildContent(Widget widget) => Padding(
@@ -77,6 +77,6 @@ class _CardView extends StatelessWidget {
 
   Text buildCardTitle() => Text(
     _songTitle,
-    style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+    style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
   );
 }

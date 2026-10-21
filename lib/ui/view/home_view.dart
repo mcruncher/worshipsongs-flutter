@@ -12,10 +12,10 @@ class HomeView extends StatelessWidget {
         icon: Icon(Icons.settings_rounded),
         onPressed: () => Navigator.push(
           context,
-          MaterialPageRoute(builder: (BuildContext context) => SettingsView()),
+          MaterialPageRoute(builder: (BuildContext context) => const SettingsView()),
         ),
       ),
     ),
-    body: ListSongsView(),
+    body: const ListSongsView(),
   );
 }
