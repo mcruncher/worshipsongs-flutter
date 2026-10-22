@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:worship_songs/utils/notifier/theme_change_notifier.dart';
+import 'package:worship_songs/utils/notifiers/theme_change_notifier.dart';
 import 'package:worship_songs/data/utils/theme_icon_utils.dart';
 
 class SettingsView extends StatelessWidget {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:worship_songs/ui/view/song_list_view.dart';
-import 'package:worship_songs/ui/view/settings_view.dart';
+import 'package:worship_songs/ui/views/song_list_view.dart';
+import 'package:worship_songs/ui/views/settings_view.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});

@@ -1,6 +1,6 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:worship_songs/domain/models/song.dart';
-import 'package:worship_songs/utils/provider/song_provider.dart';
+import 'package:worship_songs/utils/providers/song_provider.dart';
 
 part 'song_list_view_model.g.dart';
 
