@@ -1,7 +1,7 @@
 import 'dart:collection';
 
 import 'package:flutter_test/flutter_test.dart';
-import 'package:worship_songs/domain/song.dart';
+import 'package:worship_songs/domain/models/song.dart';
 
 void main() {
   group("Song", () {

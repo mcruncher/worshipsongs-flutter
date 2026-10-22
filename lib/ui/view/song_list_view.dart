@@ -1,20 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:skeletonizer/skeletonizer.dart';
-import 'package:worship_songs/domain/song.dart';
-import 'package:worship_songs/utils/provider/song_provider.dart';
+import 'package:worship_songs/domain/models/song.dart';
+import 'package:worship_songs/ui/view_models/song_list_view_model.dart';
 
-class ListSongsView extends ConsumerWidget {
-  const ListSongsView({super.key});
+class SongListView extends ConsumerWidget {
+  const SongListView({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) => ref
-      .watch(findAllSongsProvider)
-      .when(
-        data: (data) => _listSongs(data),
-        error: (error, stackTrace) => Text("error $stackTrace"),
-        loading: () => _skeletonView(),
-      );
+  Widget build(BuildContext context, WidgetRef ref) {
+    var songsViewModelProvider = ref.watch(songListViewModelProvider);
+    return songsViewModelProvider.when(
+      data: (data) => _listSongs(data),
+      error: (error, stackTrace) => Text("error $stackTrace"),
+      loading: () => _skeletonView(),
+    );
+  }
 
   ListView _listSongs(List<Song> data) => ListView.builder(
     shrinkWrap: true,

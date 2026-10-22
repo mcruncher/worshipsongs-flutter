@@ -1,17 +1,17 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:sqflite_common_ffi/sqflite_common_ffi.dart';
-import 'package:worship_songs/domain/song.dart';
-import 'package:worship_songs/utils/provider/song_provider.dart';
+import 'package:worship_songs/domain/models/song.dart';
+import 'package:worship_songs/ui/view_models/song_list_view_model.dart';
 
 void main() {
-  setUpAll(() {
-    TestWidgetsFlutterBinding.ensureInitialized();
-    sqfliteFfiInit();
-    databaseFactory = databaseFactoryFfi;
-  });
+  group("SongListViewModelTest", () {
+    setUpAll(() {
+      TestWidgetsFlutterBinding.ensureInitialized();
+      sqfliteFfiInit();
+      databaseFactory = databaseFactoryFfi;
+    });
 
-  group("View Song Provider", () {
     test("Get songs", () async {
       // setup
       var providerContainer = ProviderContainer.test();
@@ -19,7 +19,9 @@ void main() {
       var lastSong = Song(id: 964, title: "Yutham Yutham Kartharudayathu");
 
       // when
-      var viewSongs = await providerContainer.read(findAllSongsProvider.future);
+      var viewSongs = await providerContainer.read(
+        songListViewModelProvider.future,
+      );
 
       // then
       expectLater(viewSongs.first, firstSong);

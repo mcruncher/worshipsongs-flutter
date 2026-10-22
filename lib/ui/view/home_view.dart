@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:worship_songs/ui/view/list_songs_view.dart';
+import 'package:worship_songs/ui/view/song_list_view.dart';
 import 'package:worship_songs/ui/view/settings_view.dart';
 
 class HomeView extends StatelessWidget {
@@ -16,6 +16,6 @@ class HomeView extends StatelessWidget {
         ),
       ),
     ),
-    body: const ListSongsView(),
+    body: const SongListView(),
   );
 }
