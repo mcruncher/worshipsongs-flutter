@@ -1,4 +1,4 @@
 
-abstract class SongService {
+abstract interface class SongService {
   Future<List<Map<String, Object?>>> getSongs();
 }

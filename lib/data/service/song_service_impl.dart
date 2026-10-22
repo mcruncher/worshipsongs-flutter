@@ -1,7 +1,7 @@
 import 'package:sqflite/sqflite.dart';
 import 'package:worship_songs/data/service/song_service.dart';
 
-class SongServiceImpl extends SongService {
+class SongServiceImpl implements SongService {
   final Future<Database> _database;
 
   new({required this._database});
