@@ -1,7 +1,7 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:worship_songs/domain/song.dart';
 import 'package:worship_songs/utils/provider/database_provider.dart';
-import 'package:worship_songs/data/repository/song_repository.dart';
+import 'package:worship_songs/domain/repositories/song_repository.dart';
 import 'package:worship_songs/data/repository/song_repository_impl.dart';
 import 'package:worship_songs/data/service/song_service.dart';
 import 'package:worship_songs/data/service/song_service_impl.dart';

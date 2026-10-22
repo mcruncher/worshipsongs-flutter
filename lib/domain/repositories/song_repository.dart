@@ -1,5 +1,5 @@
 import 'package:worship_songs/domain/song.dart';
 
-abstract class SongRepository {
+abstract interface class SongRepository {
   Future<List<Song>> getSongs();
 }
