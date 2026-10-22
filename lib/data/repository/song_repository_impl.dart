@@ -8,7 +8,7 @@ class SongRepositoryImpl implements SongRepository {
   new({required this._viewSongService});
 
   @override
-  Future<List<Song>> getSongs() async {
+  Future<List<Song>> findAll() async {
     List<Song> songs = [];
 
     for (var element in await _viewSongService.getSongs()) {

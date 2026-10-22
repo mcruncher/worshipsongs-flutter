@@ -19,7 +19,7 @@ void main() {
       var lastSong = Song(id: 964, title: "Yutham Yutham Kartharudayathu");
 
       // when
-      var viewSongs = await providerContainer.read(songsProvider.future);
+      var viewSongs = await providerContainer.read(findAllSongsProvider.future);
 
       // then
       expectLater(viewSongs.first, firstSong);

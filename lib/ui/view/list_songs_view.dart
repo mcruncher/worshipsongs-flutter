@@ -9,7 +9,7 @@ class ListSongsView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) => ref
-      .watch(songsProvider)
+      .watch(findAllSongsProvider)
       .when(
         data: (data) => _listSongs(data),
         error: (error, stackTrace) => Text("error $stackTrace"),

@@ -17,5 +17,5 @@ SongRepository _songRepository(Ref ref) =>
     SongRepositoryImpl(viewSongService: ref.watch(_songServiceProvider));
 
 @riverpod
-Future<List<Song>> songs(Ref ref) =>
-    ref.watch(_songRepositoryProvider).getSongs();
+Future<List<Song>> findAllSongs(Ref ref) =>
+    ref.watch(_songRepositoryProvider).findAll();
