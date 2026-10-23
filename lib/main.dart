@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:worship_songs/notifier/theme_change_notifier.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:worship_songs/utils/notifiers/theme_change_notifier.dart';
 import 'package:worship_songs/theme.dart';
-import 'package:worship_songs/view/settings_view.dart';
+import 'package:worship_songs/ui/views/home_view.dart';
 
-void main() => runApp(const MyApp());
+void main() => runApp(ProviderScope(child: MyApp()));
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -16,22 +17,7 @@ class MyApp extends StatelessWidget {
       theme: defaultLightTheme,
       darkTheme: defaultDarkTheme,
       themeMode: value,
-      home: _HomePage(),
-    ),
-  );
-}
-
-class _HomePage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) => Scaffold(
-    appBar: AppBar(
-      leading: IconButton(
-        icon: Icon(Icons.settings_rounded),
-        onPressed: () => Navigator.push(
-          context,
-          MaterialPageRoute(builder: (BuildContext context) => SettingsView()),
-        ),
-      ),
+      home: const HomeView(),
     ),
   );
 }

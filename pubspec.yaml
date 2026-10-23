@@ -14,13 +14,26 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.8
+  material_ui: ^1.6.0
+  flutter_riverpod: ^3.4.3
+  riverpod_annotation: ^4.0.7
+  sqflite: ^2.4.4+2
+  path: ^1.9.1
+  skeletonizer: ^3.0.0
+  freezed_annotation: ^3.1.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^6.0.0
-
-  build_runner: ^2.17.1
+  riverpod_generator: ^4.0.9
+  sqflite_common_ffi: ^2.4.4
+  build_runner: ^2.16.2
+  freezed: ^4.0.3
+  mockito: ^5.8.1
 
 flutter:
   uses-material-design: true
+
+  assets:
+    - "assets/db/songs.sqlite"
