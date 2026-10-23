@@ -43,6 +43,6 @@ AppBarTheme _appBarTheme() => AppBarTheme(
   surfaceTintColor: Colors.transparent,
 );
 
-TextTheme _textTheme() => TextTheme(
-  titleMedium: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+TextTheme _textTheme() => const TextTheme(
+  titleMedium: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
 );

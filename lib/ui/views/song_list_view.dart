@@ -10,6 +10,7 @@ class SongListView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     var songsViewModelProvider = ref.watch(songListViewModelProvider);
+
     return songsViewModelProvider.when(
       data: (data) => _listSongs(data),
       error: (error, stackTrace) => Text("error $stackTrace"),
@@ -30,16 +31,18 @@ class SongListView extends ConsumerWidget {
     );
   }
 
-  Skeletonizer _skeletonView() => Skeletonizer(
-    child: ListView.builder(
-      itemCount: 15,
-      itemBuilder: (context, index) => _buildContent(
-        index == 0
-            ? Skeleton.keep(child: _pageTitle())
-            : _CardView(songTitle: "Song" * 10),
+  Skeletonizer _skeletonView() {
+    return Skeletonizer(
+      child: ListView.builder(
+        itemCount: 15,
+        itemBuilder: (context, index) => _buildContent(
+          index == 0
+              ? Skeleton.keep(child: _pageTitle())
+              : _CardView(songTitle: "Song" * 10),
+        ),
       ),
-    ),
-  );
+    );
+  }
 
   Padding _pageTitle() => const Padding(
     padding: EdgeInsets.only(bottom: 10),
@@ -58,25 +61,27 @@ class _CardView extends StatelessWidget {
   final String _songTitle;
 
   @override
-  Widget build(BuildContext context) => Padding(
-    padding: const EdgeInsets.only(top: 5),
-    child: Card.outlined(
-      child: SizedBox(
-        width: 500,
-        height: 50,
-        child: InkWell(
-          onTap: () => {},
-          child: Container(
-            alignment: AlignmentGeometry.centerLeft,
-            child: Padding(
-              padding: const EdgeInsets.only(left: 15),
-              child: buildCardTitle(context),
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 5),
+      child: Card.outlined(
+        child: SizedBox(
+          width: 500,
+          height: 50,
+          child: InkWell(
+            onTap: () => {},
+            child: Container(
+              alignment: AlignmentGeometry.centerLeft,
+              child: Padding(
+                padding: const EdgeInsets.only(left: 15),
+                child: buildCardTitle(context),
+              ),
             ),
           ),
         ),
       ),
-    ),
-  );
+    );
+  }
 
   Text buildCardTitle(BuildContext context) =>
       Text(_songTitle, style: Theme.of(context).textTheme.titleMedium);
