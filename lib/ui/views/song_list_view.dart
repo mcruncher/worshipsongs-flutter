@@ -17,16 +17,18 @@ class SongListView extends ConsumerWidget {
     );
   }
 
-  ListView _listSongs(List<Song> data) => ListView.builder(
-    shrinkWrap: true,
-    scrollDirection: Axis.vertical,
-    itemCount: data.length + 1,
-    itemBuilder: (context, index) => _buildContent(
-      index == 0
-          ? _pageTitle()
-          : _CardView(songTitle: data.elementAt(index - 1).title),
-    ),
-  );
+  ListView _listSongs(List<Song> data) {
+    return ListView.builder(
+      shrinkWrap: true,
+      scrollDirection: Axis.vertical,
+      itemCount: data.length + 1,
+      itemBuilder: (context, index) => _buildContent(
+        index == 0
+            ? _pageTitle()
+            : _CardView(songTitle: data.elementAt(index - 1).title),
+      ),
+    );
+  }
 
   Skeletonizer _skeletonView() => Skeletonizer(
     child: ListView.builder(
@@ -68,7 +70,7 @@ class _CardView extends StatelessWidget {
             alignment: AlignmentGeometry.centerLeft,
             child: Padding(
               padding: const EdgeInsets.only(left: 15),
-              child: buildCardTitle(),
+              child: buildCardTitle(context),
             ),
           ),
         ),
@@ -76,8 +78,6 @@ class _CardView extends StatelessWidget {
     ),
   );
 
-  Text buildCardTitle() => Text(
-    _songTitle,
-    style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
-  );
+  Text buildCardTitle(BuildContext context) =>
+      Text(_songTitle, style: Theme.of(context).textTheme.titleMedium);
 }

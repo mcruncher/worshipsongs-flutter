@@ -16,6 +16,7 @@ ThemeData _buildTheme({required Brightness brightness}) => ThemeData(
   cardTheme: _cardThemeData(),
   appBarTheme: _appBarTheme(),
   splashColor: _splashColor,
+  textTheme: _textTheme(),
 );
 
 IconThemeData _iconThemeData() => IconThemeData(size: _iconSize);
@@ -40,4 +41,8 @@ CardThemeData _cardThemeData() => CardThemeData(
 AppBarTheme _appBarTheme() => AppBarTheme(
   scrolledUnderElevation: 0,
   surfaceTintColor: Colors.transparent,
+);
+
+TextTheme _textTheme() => TextTheme(
+  titleMedium: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
 );
