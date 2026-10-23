@@ -84,5 +84,5 @@ class _CardView extends StatelessWidget {
   }
 
   Text buildCardTitle(BuildContext context) =>
-      Text(_songTitle, style: Theme.of(context).textTheme.titleMedium);
+      Text(_songTitle, style: Theme.of(context).textTheme.labelMedium);
 }
