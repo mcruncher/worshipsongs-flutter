@@ -9,7 +9,7 @@ class SongDatabaseView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final databasesAsync = ref.watch(songDatabaseViewModelProvider);
-    final selectedKey = ref.watch(selectedSongDatabaseViewModelProvider);
+    final selectedKey = ref.watch(selectedSongDatabaseViewModelProvider).value;
 
     return Scaffold(
       appBar: AppBar(title: const Text('Song Databases')),

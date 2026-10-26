@@ -22,6 +22,6 @@ final songDatabaseViewModelProvider = StateNotifierProvider<SongDatabaseViewMode
   return SongDatabaseViewModel(repository)..loadData();
 });
 
-final selectedSongDatabaseViewModelProvider = StateNotifierProvider<SelectedSongDatabaseViewModel, String?>((ref) {
+final selectedSongDatabaseViewModelProvider = StateNotifierProvider<SelectedSongDatabaseViewModel, AsyncValue<String?>>((ref) {
   return SelectedSongDatabaseViewModel()..loadData();
 });

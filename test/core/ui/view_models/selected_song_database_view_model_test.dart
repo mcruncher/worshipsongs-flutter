@@ -16,7 +16,7 @@ void main() {
 
       // then
       final prefs = await SharedPreferences.getInstance();
-      expect(viewModel.state, 'tamil_worship_songs');
+      expect(viewModel.state.value, 'tamil_worship_songs');
       expect(prefs.getString(SelectedSongDatabaseViewModel.preferenceKey), 'tamil_worship_songs');
     });
 
@@ -29,7 +29,7 @@ void main() {
       await viewModel.loadData();
 
       // then
-      expect(viewModel.state, 'english_worship_songs');
+      expect(viewModel.state.value, 'english_worship_songs');
     });
   });
 }
