@@ -4,4 +4,4 @@ import 'package:worship_songs/domain/models/verse.dart';
 part 'lyric.freezed.dart';
 
 @freezed
-class Lyric({required final int songId, required final List<Verse> verses}) with _$Lyric;
+class Lyric({required final int songId, required final List<Verse> verses, required final List<String> ordering}) with _$Lyric;
