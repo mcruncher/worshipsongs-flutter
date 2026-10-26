@@ -1,0 +1,26 @@
+[
+  {
+    "key": "tamil_worship_songs",
+    "name": "Tamil Worship Songs",
+    "description": "Tamil Christian worship songs with lyrics, ready to import into OpenLP.",
+    "url": "https://github.com/mcruncher/worshipsongs-db",
+    "language": "Tamil",
+    "openLpVersion": "2.4"
+  },
+  {
+    "key": "english_worship_songs",
+    "name": "English Worship Songs",
+    "description": "A collection of English worship songs and hymns.",
+    "url": "https://github.com/mcruncher/worshipsongs-db-english",
+    "language": "English",
+    "openLpVersion": "2.4"
+  },
+  {
+    "key": "malay_worship_songs",
+    "name": "Malay Worship Songs",
+    "description": "Lagu pujian dan penyembahan dalam Bahasa Melayu.",
+    "url": "https://github.com/mcruncher/worshipsongs-db-malay",
+    "language": "Malay",
+    "openLpVersion": "3.0"
+  }
+]

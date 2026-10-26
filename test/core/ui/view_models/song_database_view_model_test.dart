@@ -1,48 +1,54 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:worship_songs/core/domain/models/song_database.dart';
-import 'package:worship_songs/core/domain/repositories/song_database_repository.dart';
+import 'package:mockito/annotations.dart';
+import 'package:mockito/mockito.dart';
+import 'package:worship_songs/core/domain/models/song_database_metadata.dart';
+import 'package:worship_songs/core/domain/repositories/song_database_metadata_repository.dart';
 import 'package:worship_songs/core/ui/view_models/song_database_view_model.dart';
 
-class _FakeSongDatabaseRepository implements SongDatabaseRepository {
-  final List<SongDatabase> databases;
-  final bool fail;
+import 'song_database_view_model_test.mocks.dart';
 
-  _FakeSongDatabaseRepository({this.databases = const [], this.fail = false});
-
-  @override
-  Future<List<SongDatabase>> findAll() async {
-    if (fail) throw Exception('boom');
-    return databases;
-  }
-}
-
+@GenerateMocks([SongDatabaseMetadataRepository])
 void main() {
-  const database = SongDatabase(
-    name: 'Tamil Worship Songs',
-    description: 'Tamil songs',
-    githubUrl: 'https://github.com/mcruncher/worshipsongs-db',
-    language: 'Tamil',
-    openLpVersion: '2.4',
-  );
+  late MockSongDatabaseMetadataRepository repository;
+  late SongDatabaseViewModel viewModel;
 
-  test('starts loading, then exposes the databases', () async {
-    final viewModel = SongDatabaseViewModel(_FakeSongDatabaseRepository(databases: [database]));
-    addTearDown(viewModel.dispose);
-
-    expect(viewModel.state.isLoading, isTrue);
-
-    await viewModel.loadData();
-
-    expect(viewModel.state.requireValue.single.name, 'Tamil Worship Songs');
+  setUp(() {
+    repository = MockSongDatabaseMetadataRepository();
+    viewModel = SongDatabaseViewModel(repository);
   });
 
-  test('exposes an error when loading fails', () async {
-    final viewModel = SongDatabaseViewModel(_FakeSongDatabaseRepository(fail: true));
-    addTearDown(viewModel.dispose);
+  group('SongDatabaseViewModelTest', () {
+    const tamil = SongDatabaseMetadata(
+      key: 'tamil_worship_songs',
+      name: 'Tamil Worship Songs',
+      description: 'Tamil songs',
+      url: 'https://github.com/mcruncher/worshipsongs-db',
+      language: 'Tamil',
+      openLpVersion: '2.4',
+    );
 
-    await viewModel.loadData();
+    test('Should load the available song databases', () async {
+      // given
+      when(repository.findAll()).thenAnswer((_) async => [tamil]);
 
-    expect(viewModel.state.hasError, isTrue);
+      // when
+      await viewModel.loadData();
+
+      // then
+      verify(repository.findAll());
+      expect(viewModel.state.value, [tamil]);
+    });
+
+    test('Should expose an error when loading fails', () async {
+      // given
+      when(repository.findAll()).thenAnswer((_) async => throw Exception('Failed to load'));
+
+      // when
+      await viewModel.loadData();
+
+      // then
+      expect(viewModel.state.hasError, true);
+    });
   });
 }
