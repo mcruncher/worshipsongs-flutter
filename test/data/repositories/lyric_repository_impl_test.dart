@@ -7,7 +7,7 @@ import 'package:worship_songs/domain/models/lyric.dart';
 import 'package:worship_songs/domain/models/verse.dart';
 import 'package:worship_songs/domain/repositories/lyric_repository.dart';
 
-import 'lyric_repository_impl.mocks.dart';
+import 'lyric_repository_impl_test.mocks.dart';
 
 @GenerateNiceMocks([MockSpec<LyricService>()])
 void main() {
