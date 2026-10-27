@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import 'package:worship_songs/domain/models/song.dart';
+import 'package:worship_songs/ui/components/custom_card.dart';
 import 'package:worship_songs/ui/view_models/song_list_view_model.dart';
 
 class SongListView extends ConsumerWidget {
@@ -61,24 +62,18 @@ class _CardView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 5),
-      child: Card.outlined(
-        child: SizedBox(
-          width: 500,
-          height: 50,
-          child: InkWell(
-            onTap: () => context.pushNamed(
-              "Lyrics View",
-              pathParameters: {"song_id": _song.id!.toString()},
-            ),
-            child: Container(
-              alignment: AlignmentGeometry.centerLeft,
-              child: Padding(
-                padding: const EdgeInsets.only(left: 15),
-                child: buildCardTitle(context),
-              ),
-            ),
+    return CustomCard(
+      height: 50,
+      child: InkWell(
+        onTap: () => context.pushNamed(
+          "Lyrics View",
+          pathParameters: {"song_id": _song.id!.toString()},
+        ),
+        child: Container(
+          alignment: AlignmentGeometry.centerLeft,
+          child: Padding(
+            padding: const EdgeInsets.only(left: 15),
+            child: buildCardTitle(context),
           ),
         ),
       ),
