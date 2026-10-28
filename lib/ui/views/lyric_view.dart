@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:worship_songs/i18n/strings.g.dart';
 import 'package:worship_songs/ui/components/custom_card.dart';
 import 'package:worship_songs/ui/view_models/lyric_view_view_model.dart';
 
@@ -86,12 +87,16 @@ class LyricView extends ConsumerWidget {
       Text(artistName, style: TextStyle(color: Colors.grey));
 
   Column _buildLyricContainer(String section, String content) {
+    String code = section[0];
+    String numberTrack = section.substring(1);
+    String localizedSection = (t[code] ?? code) + numberTrack;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         Padding(
           padding: const EdgeInsets.only(left: 15, top: 6, bottom: 0),
-          child: Text(section),
+          child: Text(localizedSection),
         ),
         _buildLyricCard(content),
       ],
