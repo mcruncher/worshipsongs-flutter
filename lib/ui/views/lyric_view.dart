@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:skeletonizer/skeletonizer.dart';
 import 'package:worship_songs/ui/components/custom_card.dart';
 import 'package:worship_songs/ui/view_models/lyric_view_view_model.dart';
 
 class LyricView extends ConsumerWidget {
-  const LyricView({super.key, required this._songId});
+  LyricView({super.key, required this._songId});
 
   final int _songId;
+  late ThemeData _themeData;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    _themeData = Theme.of(context);
     var lyricView = ref.watch(lyricViewViewModelProvider(_songId));
 
     return Scaffold(
@@ -23,50 +24,66 @@ class LyricView extends ConsumerWidget {
           ListView buildListView;
 
           if (ordering.isEmpty) {
-            buildListView = _buildListView(
+            buildListView = _buildLyricView(
               verseOrdering.length + 1,
+              data.songName,
+              data.artistName,
               (index) => verseOrdering.entries.elementAt(index - 1),
             );
           } else {
-            buildListView = _buildListView(ordering.length + 1, (index) {
-              var key = ordering[index - 1];
-              return MapEntry(key, verseOrdering[key]!);
-            });
+            buildListView = _buildLyricView(
+              ordering.length + 1,
+              data.songName,
+              data.artistName,
+              (index) {
+                var key = ordering[index - 1];
+                return MapEntry(key, verseOrdering[key]!);
+              },
+            );
           }
 
           return buildListView;
         },
-        error: (error, stackTrace) {
-          return null;
-        },
-        loading: () => Skeletonizer(
-          child: _buildListView(10, (_) => MapEntry("Verse 1", "Some" * 20)),
-        ),
+        error: (error, stackTrace) => Text(error.toString()),
+        loading: () => Scaffold(),
       ),
     );
   }
 
-  ListView _buildListView(
+  ListView _buildLyricView(
     int itemCount,
-    MapEntry<String, String> Function(int index) function,
-  ) => ListView.builder(
-    itemCount: itemCount,
-    itemBuilder: (context, index) =>
-        _buildLyricView(index, function.call(index)),
-  );
+    String songName,
+    String artistName,
+    MapEntry<String, String> Function(int index) mapEntryFunction,
+  ) {
+    return ListView.builder(
+      itemCount: itemCount,
+      itemBuilder: (context, index) {
+        if (index == 0) {
+          return Container(
+            padding: EdgeInsets.only(left: 12, bottom: 10),
+            alignment: AlignmentGeometry.topLeft,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                _buildSongName(songName),
+                _buildArtistName(artistName),
+              ],
+            ),
+          );
+        } else {
+          var mapEntry = mapEntryFunction.call(index);
+          return _buildLyricContainer(mapEntry.key, mapEntry.value);
+        }
+      },
+    );
+  }
 
-  Widget _buildLyricView(int index, MapEntry<String, String> mapEntry) =>
-      index == 0
-      ? _buildTitle()
-      : _buildLyricContainer(mapEntry.key, mapEntry.value);
+  Text _buildSongName(String songName) =>
+      Text(songName, style: _themeData.textTheme.titleMedium);
 
-  Container _buildTitle() => Container(
-    alignment: AlignmentGeometry.centerLeft,
-    child: Padding(
-      padding: const EdgeInsets.only(bottom: 10, left: 18),
-      child: const Text("Songs"),
-    ),
-  );
+  Text _buildArtistName(String artistName) =>
+      Text(artistName, style: TextStyle(color: Colors.grey));
 
   Column _buildLyricContainer(String section, String content) {
     return Column(

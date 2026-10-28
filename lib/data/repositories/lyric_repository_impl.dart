@@ -12,16 +12,25 @@ class LyricRepositoryImpl implements LyricRepository {
   Future<Lyric> getLyricBySongId(int songId) async {
     var rawLyric = (await _lyricService.getLyricBySongId(songId))[0];
 
+    String songName = _getSongName(rawLyric);
     Map<String, String> verseOrdering = _getVerses(rawLyric);
     List<String> ordering = _getOrdering(rawLyric);
 
     var lyric = Lyric(
       songId: songId,
+      songName: songName,
+      artistName: _getArtistName(rawLyric),
       verseOrdering: verseOrdering,
       ordering: ordering,
     );
     return lyric;
   }
+
+  String _getSongName(Map<String, Object?> rawLyric) =>
+      rawLyric["title"] as String;
+
+  String _getArtistName(Map<String, Object?> rawLyric) =>
+      rawLyric["display_name"] as String;
 
   Map<String, String> _getVerses(Map<String, Object?> rawLyric) {
     var xmlDocument = XmlDocument.parse(rawLyric["lyrics"] as String);
@@ -30,7 +39,8 @@ class LyricRepositoryImpl implements LyricRepository {
 
     var verseTags = lyricsTag.findAllElements("verse");
     return {
-      for (var verseTag in verseTags) _getMapKey(verseTag): verseTag.innerText.trim(),
+      for (var verseTag in verseTags)
+        _getMapKey(verseTag): verseTag.innerText.trim(),
     };
   }
 
