@@ -11,7 +11,7 @@ class HomeView extends StatelessWidget {
       appBar: AppBar(
         leading: IconButton(
           icon: const Icon(Icons.settings_rounded),
-          onPressed: () => context.pushNamed("Settings"),
+          onPressed: () => context.push("/settings"),
         ),
       ),
       body: const SongListView(),

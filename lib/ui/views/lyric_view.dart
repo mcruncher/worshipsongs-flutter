@@ -20,54 +20,45 @@ class LyricView extends ConsumerWidget {
           var ordering = data.ordering;
           var verseOrdering = data.verseOrdering;
 
-          if (ordering.isEmpty) {
-            return ListView.builder(
-              itemCount: verseOrdering.length + 1,
-              itemBuilder: (context, index) {
-                if (index == 0) {
-                  return _buildTitle();
-                } else {
-                  var map = verseOrdering.entries.elementAt(index - 1);
+          ListView buildListView;
 
-                  return _buildLyricContainer(map.key, map.value);
-                }
-              },
+          if (ordering.isEmpty) {
+            buildListView = _buildListView(
+              verseOrdering.length + 1,
+              (index) => verseOrdering.entries.elementAt(index - 1),
             );
+          } else {
+            buildListView = _buildListView(ordering.length + 1, (index) {
+              var key = ordering[index - 1];
+              return MapEntry(key, verseOrdering[key]!);
+            });
           }
 
-          return ListView.builder(
-            itemCount: ordering.length + 1,
-            itemBuilder: (context, index) {
-              if (index == 0) {
-                return _buildTitle();
-              } else {
-                var key = ordering[index - 1];
-
-                return _buildLyricContainer(key, verseOrdering[key]!);
-              }
-            },
-          );
+          return buildListView;
         },
         error: (error, stackTrace) {
           return null;
         },
-        loading: () {
-          return Skeletonizer(
-            child: ListView.builder(
-              itemCount: 10,
-              itemBuilder: (context, index) {
-                if (index == 0) {
-                  return _buildTitle();
-                } else {
-                  return _buildLyricContainer("Verse 1", "Some random content" * 20);
-                }
-              }
-            ),
-          );
-        },
+        loading: () => Skeletonizer(
+          child: _buildListView(10, (_) => MapEntry("Verse 1", "Some" * 20)),
+        ),
       ),
     );
   }
+
+  ListView _buildListView(
+    int itemCount,
+    MapEntry<String, String> Function(int index) function,
+  ) => ListView.builder(
+    itemCount: itemCount,
+    itemBuilder: (context, index) =>
+        _buildLyricView(index, function.call(index)),
+  );
+
+  Widget _buildLyricView(int index, MapEntry<String, String> mapEntry) =>
+      index == 0
+      ? _buildTitle()
+      : _buildLyricContainer(mapEntry.key, mapEntry.value);
 
   Container _buildTitle() => Container(
     alignment: AlignmentGeometry.centerLeft,
@@ -82,11 +73,7 @@ class LyricView extends ConsumerWidget {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         Padding(
-          padding: const EdgeInsets.only(
-            left: 15,
-            top: 6,
-            bottom: 0,
-          ),
+          padding: const EdgeInsets.only(left: 15, top: 6, bottom: 0),
           child: Text(section),
         ),
         _buildLyricCard(content),
