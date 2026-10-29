@@ -8,7 +8,8 @@ class SongDatabaseMetadataRepositoryImpl implements SongDatabaseMetadataReposito
   SongDatabaseMetadataRepositoryImpl(this._songDatabaseService);
 
   @override
-  Future<List<SongDatabaseMetadata>> findAll() {
-    return _songDatabaseService.getSongDatabases();
+  Future<List<SongDatabaseMetadata>> findAll() async {
+    final json = await _songDatabaseService.getSongDatabases();
+    return json.map((item) => SongDatabaseMetadata.fromJson(item as Map<String, dynamic>)).toList();
   }
 }

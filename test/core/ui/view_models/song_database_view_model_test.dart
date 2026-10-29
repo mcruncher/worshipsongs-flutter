@@ -11,11 +11,9 @@ import 'song_database_view_model_test.mocks.dart';
 @GenerateMocks([SongDatabaseMetadataRepository])
 void main() {
   late MockSongDatabaseMetadataRepository repository;
-  late SongDatabaseViewModel viewModel;
 
   setUp(() {
     repository = MockSongDatabaseMetadataRepository();
-    viewModel = SongDatabaseViewModel(repository);
   });
 
   group('SongDatabaseViewModelTest', () {
@@ -31,6 +29,7 @@ void main() {
     test('Should load the available song databases', () async {
       // given
       when(repository.findAll()).thenAnswer((_) async => [tamil]);
+      final viewModel = SongDatabaseViewModel(repository);
 
       // when
       await viewModel.loadData();
@@ -43,6 +42,7 @@ void main() {
     test('Should expose an error when loading fails', () async {
       // given
       when(repository.findAll()).thenAnswer((_) async => throw Exception('Failed to load'));
+      final viewModel = SongDatabaseViewModel(repository);
 
       // when
       await viewModel.loadData();

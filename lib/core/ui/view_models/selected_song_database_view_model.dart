@@ -5,7 +5,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 class SelectedSongDatabaseViewModel extends StateNotifier<AsyncValue<String?>> {
   static const preferenceKey = 'selected_song_database_key';
 
-  SelectedSongDatabaseViewModel() : super(const AsyncValue.loading());
+  SelectedSongDatabaseViewModel() : super(const AsyncValue.loading()) {
+    loadData();
+  }
 
   Future<void> loadData() async {
     final preference = await SharedPreferences.getInstance();

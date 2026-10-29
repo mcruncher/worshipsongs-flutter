@@ -19,9 +19,9 @@ final songDatabaseMetadataRepositoryProvider = Provider<SongDatabaseMetadataRepo
 
 final songDatabaseViewModelProvider = StateNotifierProvider<SongDatabaseViewModel, AsyncValue<List<SongDatabaseMetadata>>>((ref) {
   final repository = ref.watch(songDatabaseMetadataRepositoryProvider);
-  return SongDatabaseViewModel(repository)..loadData();
+  return SongDatabaseViewModel(repository);
 });
 
 final selectedSongDatabaseViewModelProvider = StateNotifierProvider<SelectedSongDatabaseViewModel, AsyncValue<String?>>((ref) {
-  return SelectedSongDatabaseViewModel()..loadData();
+  return SelectedSongDatabaseViewModel();
 });
