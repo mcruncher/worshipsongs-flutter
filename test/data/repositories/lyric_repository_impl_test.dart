@@ -22,6 +22,8 @@ void main() {
       when(lyricService.getLyricBySongId(1)).thenAnswer(
         (realInvocation) async => [
           {
+            "title": "One way Jesus",
+            "display_name": "Hillsong Worship",
             "lyrics":
                 '<?xml version=\'1.0\' encoding=\'UTF-8\'?> '
                 '<song version="1.0">'
@@ -64,6 +66,8 @@ void main() {
         lyric,
         Lyric(
           songId: 1,
+          songName: 'One way Jesus',
+          artistName: 'Hillsong Worship',
           verseOrdering: {
             "v1": "I lay my life down at Your feet 'Cause You're the only one I need I turn to You and You are always there",
             "o1": "In troubled times, it's You I seek I put You first, that's all I need I humble all I am all to You",
@@ -82,6 +86,8 @@ void main() {
       when(lyricService.getLyricBySongId(1)).thenAnswer(
         (realInvocation) async => [
           {
+            "title": "(Let Us Be)One Voice",
+            "display_name": "Robert Gay",
             "lyrics":
             '<?xml version=\'1.0\' encoding=\'UTF-8\'?> '
                 '<song version="1.0">'
@@ -122,6 +128,8 @@ void main() {
         lyric,
         Lyric(
           songId: 1,
+          songName: "(Let Us Be)One Voice",
+          artistName: "Robert Gay",
           verseOrdering: {
             "v1": "Father we ask of You this day Come and heal our land Knit our hearts together That Your glory may be seen in us Then the world will know That Jesus Christ is Lord",
             "c1": "Let us be One Voice, that glorifies Your name Let us be One Voice, declaring that You reign Let us be One Voice, in love and harmony And we pray O God, grant us unity",
