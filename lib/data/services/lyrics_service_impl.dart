@@ -1,7 +1,7 @@
 import 'package:sqflite/sqflite.dart';
-import 'package:worship_songs/data/services/lyric_service.dart';
+import 'package:worship_songs/data/services/lyrics_service.dart';
 
-class LyricServiceImpl implements LyricService {
+class LyricsServiceImpl implements LyricsService {
   final Future<Database> _database;
 
   new({required this._database});

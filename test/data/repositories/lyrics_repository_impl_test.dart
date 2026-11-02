@@ -1,25 +1,25 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:worship_songs/data/repositories/lyric_repository_impl.dart';
-import 'package:worship_songs/data/services/lyric_service.dart';
+import 'package:worship_songs/data/repositories/lyrics_repository_impl.dart';
+import 'package:worship_songs/data/services/lyrics_service.dart';
 import 'package:worship_songs/domain/models/lyrics.dart';
-import 'package:worship_songs/domain/repositories/lyric_repository.dart';
+import 'package:worship_songs/domain/repositories/lyrics_repository.dart';
 
-import 'lyric_repository_impl_test.mocks.dart';
+import 'lyrics_repository_impl_test.mocks.dart';
 
-@GenerateNiceMocks([MockSpec<LyricService>()])
+@GenerateNiceMocks([MockSpec<LyricsService>()])
 void main() {
   group("LyricRepositoryImplTest", () {
-    late LyricService lyricService;
+    late LyricsService lyricsService;
 
     setUp(() {
-      lyricService = MockLyricService();
+      lyricsService = MockLyricsService();
     });
 
     test("Find lyric by song id", () async {
       // setup
-      when(lyricService.getLyricBySongId(1)).thenAnswer(
+      when(lyricsService.getLyricBySongId(1)).thenAnswer(
         (realInvocation) async => [
           {
             "title": "One way Jesus",
@@ -54,12 +54,12 @@ void main() {
       );
 
       // and
-      LyricRepository lyricRepository = LyricRepositoryImpl(
-        lyricService: lyricService,
+      LyricsRepository lyricRepository = LyricsRepositoryImpl(
+        lyricsService: lyricsService,
       );
 
       // when
-      var lyric = await lyricRepository.getLyricBySongId(1);
+      var lyric = await lyricRepository.getLyricsBySongId(1);
 
       // then
       expect(
@@ -83,7 +83,7 @@ void main() {
 
     test("Find lyric by song id - verse oder doesn't exist", () async {
       // setup
-      when(lyricService.getLyricBySongId(1)).thenAnswer(
+      when(lyricsService.getLyricBySongId(1)).thenAnswer(
         (realInvocation) async => [
           {
             "title": "(Let Us Be)One Voice",
@@ -116,12 +116,12 @@ void main() {
       );
 
       // and
-      LyricRepository lyricRepository = LyricRepositoryImpl(
-        lyricService: lyricService,
+      LyricsRepository lyricRepository = LyricsRepositoryImpl(
+        lyricsService: lyricsService,
       );
 
       // when
-      var lyric = await lyricRepository.getLyricBySongId(1);
+      var lyric = await lyricRepository.getLyricsBySongId(1);
 
       // then
       expect(

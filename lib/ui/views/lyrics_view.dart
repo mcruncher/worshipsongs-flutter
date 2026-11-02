@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:worship_songs/i18n/strings.g.dart';
 import 'package:worship_songs/ui/components/custom_card.dart';
-import 'package:worship_songs/ui/view_models/lyric_view_view_model.dart';
+import 'package:worship_songs/ui/view_models/lyrics_view_view_model.dart';
 
-class LyricView extends ConsumerWidget {
-  LyricView({super.key, required this._songId});
+class LyricsView extends ConsumerWidget {
+  LyricsView({super.key, required this._songId});
 
   final int _songId;
   late ThemeData _themeData;
@@ -13,11 +13,11 @@ class LyricView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     _themeData = Theme.of(context);
-    var lyricView = ref.watch(lyricViewViewModelProvider(_songId));
+    var lyricsView = ref.watch(lyricsViewViewModelProvider(_songId));
 
     return Scaffold(
       appBar: AppBar(leading: const BackButton()),
-      body: lyricView.when(
+      body: lyricsView.when(
         data: (data) {
           var ordering = data.verseOrdering;
           var verseOrdering = data.verses;
