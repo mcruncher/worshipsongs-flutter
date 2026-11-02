@@ -9,7 +9,7 @@ class LyricsRepositoryImpl implements LyricsRepository {
   new({required this._lyricsService});
 
   @override
-  Future<Lyrics> getLyricsBySongId(int songId) async {
+  Future<Lyrics> getBySongId(int songId) async {
     var rawLyric = (await _lyricsService.getLyricBySongId(songId))[0];
 
     String songName = _getSongName(rawLyric);

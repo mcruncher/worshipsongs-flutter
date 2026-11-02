@@ -8,5 +8,5 @@ part 'lyrics_view_view_model.g.dart';
 class LyricsViewViewModel extends _$LyricsViewViewModel {
   @override
   FutureOr<Lyrics> build(int songId) =>
-      ref.watch(lyricsRepositoryProvider).getLyricsBySongId(songId);
+      ref.watch(lyricsRepositoryProvider).getBySongId(songId);
 }

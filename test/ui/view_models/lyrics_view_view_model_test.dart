@@ -20,7 +20,7 @@ void main() {
 
     test("Get lyrics by song id", () {
       // setup
-      when(lyricsRepository.getLyricsBySongId(1)).thenAnswer(
+      when(lyricsRepository.getBySongId(1)).thenAnswer(
         (realInvocation) async => Lyrics(
           songId: 1,
           title: "Song",
@@ -41,7 +41,7 @@ void main() {
       providerContainer.read(lyricsViewViewModelProvider(1));
 
       // then
-      verify(lyricsRepository.getLyricsBySongId(1));
+      verify(lyricsRepository.getBySongId(1));
     });
   });
 }

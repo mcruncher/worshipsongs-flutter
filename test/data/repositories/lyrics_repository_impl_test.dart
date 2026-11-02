@@ -59,7 +59,7 @@ void main() {
       );
 
       // when
-      var lyric = await lyricRepository.getLyricsBySongId(1);
+      var lyric = await lyricRepository.getBySongId(1);
 
       // then
       expect(
@@ -121,7 +121,7 @@ void main() {
       );
 
       // when
-      var lyric = await lyricRepository.getLyricsBySongId(1);
+      var lyric = await lyricRepository.getBySongId(1);
 
       // then
       expect(
