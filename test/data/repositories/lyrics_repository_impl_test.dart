@@ -11,10 +11,15 @@ import 'lyrics_repository_impl_test.mocks.dart';
 @GenerateNiceMocks([MockSpec<LyricsService>()])
 void main() {
   group("LyricRepositoryImplTest", () {
+    late LyricsRepository lyricRepository;
     late LyricsService lyricsService;
 
     setUp(() {
       lyricsService = MockLyricsService();
+
+      lyricRepository = LyricsRepositoryImpl(
+        lyricsService: lyricsService,
+      );
     });
 
     test("Find lyric by song id", () async {
@@ -51,11 +56,6 @@ void main() {
             "verse_order": "v1 o1 p1 v2 o2 p1 c1 p1 c1",
           },
         ],
-      );
-
-      // and
-      LyricsRepository lyricRepository = LyricsRepositoryImpl(
-        lyricsService: lyricsService,
       );
 
       // when
@@ -113,11 +113,6 @@ void main() {
             "verse_order": "",
           },
         ],
-      );
-
-      // and
-      LyricsRepository lyricRepository = LyricsRepositoryImpl(
-        lyricsService: lyricsService,
       );
 
       // when
