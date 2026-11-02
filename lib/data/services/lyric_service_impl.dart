@@ -9,12 +9,13 @@ class LyricServiceImpl implements LyricService {
   @override
   Future<List<Map<String, Object?>>> getLyricBySongId(int songId) async =>
       (await _database).rawQuery(
-        "select s.id, s.title, s.lyrics, s.verse_order, a.display_name "
-        "from songs s "
-        "left join authors_songs aus "
-        "on s.id = aus.song_id "
-        "left join authors a on aus.author_id = a.id "
-        "where s.id = ? ",
+        "SELECT s.id, s.title, s.lyrics, s.verse_order, a.display_name "
+        "FROM songs s "
+        "LEFT JOIN authors_songs aus "
+        "ON s.id = aus.song_id "
+        "LEFT JOIN authors a "
+        "ON aus.author_id = a.id "
+        "WHERE s.id = ? ",
         [songId],
       );
 }
