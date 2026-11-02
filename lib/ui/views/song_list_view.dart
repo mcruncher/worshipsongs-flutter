@@ -38,7 +38,7 @@ class SongListView extends ConsumerWidget {
         itemBuilder: (context, index) => _buildContent(
           index == 0
               ? Skeleton.keep(child: _pageTitle())
-              : _CardView(song: Song(title: "Song" * 10)),
+              : _CardView(song: Song(id: 1, title: "Song" * 10)),
         ),
       ),
     );
@@ -67,7 +67,7 @@ class _CardView extends StatelessWidget {
       child: InkWell(
         onTap: () => context.pushNamed(
           "Lyrics View",
-          pathParameters: {"song_id": _song.id!.toString()},
+          pathParameters: {"song_id": _song.id.toString()},
         ),
         child: Container(
           alignment: AlignmentGeometry.centerLeft,
@@ -81,5 +81,5 @@ class _CardView extends StatelessWidget {
   }
 
   Text buildCardTitle(BuildContext context) =>
-      Text(_song.title!, style: Theme.of(context).textTheme.labelMedium);
+      Text(_song.title, style: Theme.of(context).textTheme.labelMedium);
 }
