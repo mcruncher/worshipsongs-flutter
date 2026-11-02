@@ -1,5 +1,5 @@
 import 'package:worship_songs/data/services/lyric_service.dart';
-import 'package:worship_songs/domain/models/lyric.dart';
+import 'package:worship_songs/domain/models/lyrics.dart';
 import 'package:worship_songs/domain/repositories/lyric_repository.dart';
 import 'package:xml/xml.dart';
 
@@ -9,19 +9,19 @@ class LyricRepositoryImpl implements LyricRepository {
   new({required this._lyricService});
 
   @override
-  Future<Lyric> getLyricBySongId(int songId) async {
+  Future<Lyrics> getLyricBySongId(int songId) async {
     var rawLyric = (await _lyricService.getLyricBySongId(songId))[0];
 
     String songName = _getSongName(rawLyric);
     Map<String, String> verseOrdering = _getVerses(rawLyric);
     List<String> ordering = _getOrdering(rawLyric);
 
-    var lyric = Lyric(
+    var lyric = Lyrics(
       songId: songId,
-      songName: songName,
+      title: songName,
       artistName: _getArtistName(rawLyric),
-      verseOrdering: verseOrdering,
-      ordering: ordering,
+      verses: verseOrdering,
+      verseOrdering: ordering,
     );
     return lyric;
   }

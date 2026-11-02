@@ -3,7 +3,7 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:worship_songs/data/repositories/lyric_repository_impl.dart';
 import 'package:worship_songs/data/services/lyric_service.dart';
-import 'package:worship_songs/domain/models/lyric.dart';
+import 'package:worship_songs/domain/models/lyrics.dart';
 import 'package:worship_songs/domain/repositories/lyric_repository.dart';
 
 import 'lyric_repository_impl_test.mocks.dart';
@@ -64,11 +64,11 @@ void main() {
       // then
       expect(
         lyric,
-        Lyric(
+        Lyrics(
           songId: 1,
-          songName: 'One way Jesus',
+          title: 'One way Jesus',
           artistName: 'Hillsong Worship',
-          verseOrdering: {
+          verses: {
             "v1": "I lay my life down at Your feet 'Cause You're the only one I need I turn to You and You are always there",
             "o1": "In troubled times, it's You I seek I put You first, that's all I need I humble all I am all to You",
             "p1": "One way, Jesus, You're the only one that I could live for",
@@ -76,7 +76,7 @@ void main() {
             "o2": "You will never, ever change Yesterday, today the same Forever 'til forever meets no end",
             "c1": "You are the way, the truth and the life I live by faith and not by sight for You We're livin' all for You",
           },
-          ordering: ["v1", "o1", "p1", "v2", "o2", "p1", "c1", "p1", "c1"],
+          verseOrdering: ["v1", "o1", "p1", "v2", "o2", "p1", "c1", "p1", "c1"],
         ),
       );
     });
@@ -126,16 +126,16 @@ void main() {
       // then
       expect(
         lyric,
-        Lyric(
+        Lyrics(
           songId: 1,
-          songName: "(Let Us Be)One Voice",
+          title: "(Let Us Be)One Voice",
           artistName: "Robert Gay",
-          verseOrdering: {
+          verses: {
             "v1": "Father we ask of You this day Come and heal our land Knit our hearts together That Your glory may be seen in us Then the world will know That Jesus Christ is Lord",
             "c1": "Let us be One Voice, that glorifies Your name Let us be One Voice, declaring that You reign Let us be One Voice, in love and harmony And we pray O God, grant us unity",
             "v2": "Now is the time for you and I To join our hearts in prayer That the name of Jesus Will be lifted high above the earth Then the world will know That Jesus Christ is Lord",
           },
-          ordering: [],
+          verseOrdering: [],
         ),
       );
     });

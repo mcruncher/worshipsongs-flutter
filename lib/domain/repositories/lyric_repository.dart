@@ -1,6 +1,6 @@
-import 'package:worship_songs/domain/models/lyric.dart';
+import 'package:worship_songs/domain/models/lyrics.dart';
 
 abstract interface class LyricRepository
 {
-  Future<Lyric> getLyricBySongId(int songId);
+  Future<Lyrics> getLyricBySongId(int songId);
 }

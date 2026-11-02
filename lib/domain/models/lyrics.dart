@@ -3,10 +3,10 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'lyric.freezed.dart';
 
 @freezed
-class Lyric({
+class Lyrics({
   required final int songId,
-  required final String songName,
+  required final String title,
   required final String artistName,
-  required final Map<String, String> verseOrdering,
-  required final List<String> ordering,
+  required final Map<String, String> verses,
+  required final List<String> verseOrdering,
 }) with _$Lyric;

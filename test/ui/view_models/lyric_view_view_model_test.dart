@@ -2,7 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:worship_songs/domain/models/lyric.dart';
+import 'package:worship_songs/domain/models/lyrics.dart';
 import 'package:worship_songs/domain/repositories/lyric_repository.dart';
 import 'package:worship_songs/ui/view_models/lyric_view_view_model.dart';
 import 'package:worship_songs/utils/providers/lyric_provider.dart';
@@ -21,12 +21,12 @@ void main() {
     test("Get lyrics by song id", () {
       // setup
       when(lyricRepository.getLyricBySongId(1)).thenAnswer(
-        (realInvocation) async => Lyric(
+        (realInvocation) async => Lyrics(
           songId: 1,
-          songName: "Song",
+          title: "Song",
           artistName: "Artist",
-          verseOrdering: {},
-          ordering: [],
+          verses: {},
+          verseOrdering: [],
         ),
       );
 

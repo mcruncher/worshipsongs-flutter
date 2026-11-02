@@ -19,22 +19,22 @@ class LyricView extends ConsumerWidget {
       appBar: AppBar(leading: const BackButton()),
       body: lyricView.when(
         data: (data) {
-          var ordering = data.ordering;
-          var verseOrdering = data.verseOrdering;
+          var ordering = data.verseOrdering;
+          var verseOrdering = data.verses;
 
           ListView buildListView;
 
           if (ordering.isEmpty) {
             buildListView = _buildLyricView(
               verseOrdering.length + 1,
-              data.songName,
+              data.title,
               data.artistName,
               (index) => verseOrdering.entries.elementAt(index - 1),
             );
           } else {
             buildListView = _buildLyricView(
               ordering.length + 1,
-              data.songName,
+              data.title,
               data.artistName,
               (index) {
                 var key = ordering[index - 1];
