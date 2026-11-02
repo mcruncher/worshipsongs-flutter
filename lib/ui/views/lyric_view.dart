@@ -16,7 +16,7 @@ class LyricView extends ConsumerWidget {
     var lyricView = ref.watch(lyricViewViewModelProvider(_songId));
 
     return Scaffold(
-      appBar: AppBar(leading: BackButton()),
+      appBar: AppBar(leading: const BackButton()),
       body: lyricView.when(
         data: (data) {
           var ordering = data.ordering;
@@ -46,7 +46,7 @@ class LyricView extends ConsumerWidget {
           return buildListView;
         },
         error: (error, stackTrace) => Text(error.toString()),
-        loading: () => Scaffold(),
+        loading: () => const Scaffold(),
       ),
     );
   }
@@ -62,7 +62,7 @@ class LyricView extends ConsumerWidget {
       itemBuilder: (context, index) {
         if (index == 0) {
           return Container(
-            padding: EdgeInsets.only(left: 12, bottom: 10),
+            padding: const EdgeInsets.only(left: 12, bottom: 10),
             alignment: AlignmentGeometry.topLeft,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -84,7 +84,7 @@ class LyricView extends ConsumerWidget {
       Text(songName, style: _themeData.textTheme.titleMedium);
 
   Text _buildArtistName(String artistName) =>
-      Text(artistName, style: TextStyle(color: Colors.grey));
+      Text(artistName, style: const TextStyle(color: Colors.grey));
 
   Column _buildLyricContainer(String section, String content) {
     String code = section[0];

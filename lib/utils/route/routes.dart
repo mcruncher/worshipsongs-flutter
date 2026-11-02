@@ -8,7 +8,7 @@ final route = GoRouter(
     GoRoute(
       path: "/",
       name: "Home",
-      builder: (context, state) => HomeView(),
+      builder: (context, state) => const HomeView(),
 
       routes: [
         GoRoute(
@@ -23,7 +23,7 @@ final route = GoRouter(
     GoRoute(
       path: "/settings",
       name: "Settings",
-      builder: (context, state) => SettingsView(),
+      builder: (context, state) => const SettingsView(),
     ),
   ],
 );
