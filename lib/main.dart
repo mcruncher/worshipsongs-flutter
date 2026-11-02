@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:worship_songs/theme.dart';
+import 'package:worship_songs/ui/route/routes.dart';
 import 'package:worship_songs/utils/notifiers/theme_change_notifier.dart';
-import 'package:worship_songs/utils/route/routes.dart';
 
 void main() => runApp(ProviderScope(child: MyApp()));
 
