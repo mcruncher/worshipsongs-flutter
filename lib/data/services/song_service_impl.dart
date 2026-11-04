@@ -9,4 +9,8 @@ class SongServiceImpl implements SongService {
   @override
   Future<List<Map<String, Object?>>> getSongs() async => (await _database)
       .query("songs", columns: ["id", "title"], orderBy: "title");
+
+  @override
+  Future<List<Map<String, Object?>>> getSongByIdWithLyrics(int id) async =>
+      (await _database).query("songs", where: "id = ?", whereArgs: [id]);
 }
