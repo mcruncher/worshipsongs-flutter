@@ -19,8 +19,8 @@ class LyricsView extends ConsumerWidget {
       appBar: AppBar(leading: const BackButton()),
       body: lyricsView.when(
         data: (data) {
-          var ordering = data.verseOrdering;
-          var verseOrdering = data.verses;
+          var ordering = data.verseOrdering!;
+          var verseOrdering = data.verses!;
 
           ListView buildListView;
 
@@ -28,14 +28,12 @@ class LyricsView extends ConsumerWidget {
             buildListView = _buildLyricView(
               verseOrdering.length + 1,
               data.title,
-              data.artistName,
               (index) => verseOrdering.entries.elementAt(index - 1),
             );
           } else {
             buildListView = _buildLyricView(
               ordering.length + 1,
               data.title,
-              data.artistName,
               (index) {
                 var key = ordering[index - 1];
                 return MapEntry(key, verseOrdering[key]!);
@@ -54,7 +52,6 @@ class LyricsView extends ConsumerWidget {
   ListView _buildLyricView(
     int itemCount,
     String songName,
-    String artistName,
     MapEntry<String, String> Function(int index) mapEntryFunction,
   ) {
     return ListView.builder(
@@ -64,13 +61,7 @@ class LyricsView extends ConsumerWidget {
           return Container(
             padding: const EdgeInsets.only(left: 12, bottom: 10),
             alignment: AlignmentGeometry.topLeft,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                _buildSongName(songName),
-                _buildArtistName(artistName),
-              ],
-            ),
+            child: _buildSongName(songName),
           );
         } else {
           var mapEntry = mapEntryFunction.call(index);
@@ -82,9 +73,6 @@ class LyricsView extends ConsumerWidget {
 
   Text _buildSongName(String songName) =>
       Text(songName, style: _themeData.textTheme.titleMedium);
-
-  Text _buildArtistName(String artistName) =>
-      Text(artistName, style: const TextStyle(color: Colors.grey));
 
   Column _buildLyricContainer(String section, String content) {
     String code = section[0];

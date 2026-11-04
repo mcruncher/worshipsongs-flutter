@@ -1,34 +1,31 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:worship_songs/data/repositories/lyrics_repository_impl.dart';
-import 'package:worship_songs/data/services/lyrics_service.dart';
-import 'package:worship_songs/domain/models/lyrics.dart';
-import 'package:worship_songs/domain/repositories/lyrics_repository.dart';
+import 'package:worship_songs/data/repositories/song_repository_impl.dart';
+import 'package:worship_songs/data/services/song_service.dart';
+import 'package:worship_songs/domain/models/song.dart';
+import 'package:worship_songs/domain/repositories/song_repository.dart';
 
 import 'lyrics_repository_impl_test.mocks.dart';
 
-@GenerateNiceMocks([MockSpec<LyricsService>()])
+@GenerateNiceMocks([MockSpec<SongService>()])
 void main() {
   group("LyricRepositoryImplTest", () {
-    late LyricsRepository lyricRepository;
-    late LyricsService lyricsService;
+    late SongRepository songRepository;
+    late SongService songService;
 
     setUp(() {
-      lyricsService = MockLyricsService();
-
-      lyricRepository = LyricsRepositoryImpl(
-        lyricsService: lyricsService,
-      );
+      songService = MockSongService();
+      songRepository = SongRepositoryImpl(viewSongService: songService);
     });
 
     test("Find lyric by song id", () async {
       // setup
-      when(lyricsService.getLyricBySongId(1)).thenAnswer(
+      when(songService.getSongByIdWithLyrics(1)).thenAnswer(
         (realInvocation) async => [
           {
+            "id": "1",
             "title": "One way Jesus",
-            "display_name": "Hillsong Worship",
             "lyrics":
                 '<?xml version=\'1.0\' encoding=\'UTF-8\'?> '
                 '<song version="1.0">'
@@ -59,15 +56,14 @@ void main() {
       );
 
       // when
-      var lyric = await lyricRepository.getBySongId(1);
+      var lyric = await songRepository.findByIdWithLyrics(1);
 
       // then
       expect(
         lyric,
-        Lyrics(
-          songId: 1,
+        Song(
+          id: 1,
           title: 'One way Jesus',
-          artistName: 'Hillsong Worship',
           verses: {
             "v1": "I lay my life down at Your feet 'Cause You're the only one I need I turn to You and You are always there",
             "o1": "In troubled times, it's You I seek I put You first, that's all I need I humble all I am all to You",
@@ -81,15 +77,15 @@ void main() {
       );
     });
 
-    test("Find lyric by song id - verse oder doesn't exist", () async {
+    test("Find lyric by song id - verse order doesn't exist", () async {
       // setup
-      when(lyricsService.getLyricBySongId(1)).thenAnswer(
+      when(songService.getSongByIdWithLyrics(1)).thenAnswer(
         (realInvocation) async => [
           {
+            "id": "1",
             "title": "(Let Us Be)One Voice",
-            "display_name": "Robert Gay",
             "lyrics":
-            '<?xml version=\'1.0\' encoding=\'UTF-8\'?> '
+                '<?xml version=\'1.0\' encoding=\'UTF-8\'?> '
                 '<song version="1.0">'
                 '<lyrics>'
                 '<verse label="1" type="v">'
@@ -116,15 +112,14 @@ void main() {
       );
 
       // when
-      var lyric = await lyricRepository.getBySongId(1);
+      var lyric = await songRepository.findByIdWithLyrics(1);
 
       // then
       expect(
         lyric,
-        Lyrics(
-          songId: 1,
+        Song(
+          id: 1,
           title: "(Let Us Be)One Voice",
-          artistName: "Robert Gay",
           verses: {
             "v1": "Father we ask of You this day Come and heal our land Knit our hearts together That Your glory may be seen in us Then the world will know That Jesus Christ is Lord",
             "c1": "Let us be One Voice, that glorifies Your name Let us be One Voice, declaring that You reign Let us be One Voice, in love and harmony And we pray O God, grant us unity",
