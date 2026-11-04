@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:worship_songs/ui/views/song_list_view.dart';
-import 'package:worship_songs/ui/views/settings_view.dart';
+import 'package:worship_songs/core/ui/views/settings_view.dart';
 
 class HomeView extends StatelessWidget {
-  const HomeView({super.key});
+  final String databaseKey;
+  const HomeView({super.key, required this.databaseKey});
 
   @override
   Widget build(BuildContext context) => Scaffold(
@@ -16,6 +17,6 @@ class HomeView extends StatelessWidget {
         ),
       ),
     ),
-    body: const SongListView(),
+    body: SongListView(databaseKey: databaseKey,),
   );
 }
