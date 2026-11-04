@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:worship_songs/core/ui/views/settings_view.dart';
+import 'package:worship_songs/ui/views/song_list_view.dart';
 
 class SongDatabaseSongsView extends StatelessWidget {
   final String databaseKey;
@@ -19,10 +20,7 @@ class SongDatabaseSongsView extends StatelessWidget {
           ),
       title: Text(databaseKey),
       ),
-      body: ListView.builder(
-        itemCount: 10,
-        itemBuilder: (context, index) => ListTile(title: Text('Sample song ${index + 1}')),
-      ),
+      body: SongListView(databaseKey: databaseKey),
     );
   }
 }

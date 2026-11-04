@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:worship_songs/core/ui/views/song_database_view.dart';
 import 'package:worship_songs/core/utils/providers/song_database_providers.dart';
 import 'package:worship_songs/data/utils/theme_icon_utils.dart';
 import 'package:worship_songs/utils/notifiers/theme_change_notifier.dart';
@@ -60,7 +61,11 @@ class _DatabaseCard extends StatelessWidget {
           Row(
             children: [
               Expanded(child: Text('Database', style: theme.textTheme.titleMedium)),
-              OutlinedButton(onPressed: () {}, child: const Text('Configure')),
+              OutlinedButton(onPressed: () => Navigator.push(
+                context,
+                MaterialPageRoute(builder: (BuildContext context) => const SongDatabaseView())
+              ),
+              child: const Text('Configure')),
             ],
           ),
           const SizedBox(height: 12),

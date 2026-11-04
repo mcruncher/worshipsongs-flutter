@@ -5,15 +5,17 @@ import 'package:worship_songs/domain/models/song.dart';
 import 'package:worship_songs/ui/view_models/song_list_view_model.dart';
 
 class SongListView extends ConsumerWidget {
-  const SongListView({super.key});
+  final String databaseKey;
+
+  const SongListView({super.key, required this.databaseKey});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    var songsViewModelProvider = ref.watch(songListViewModelProvider);
+    var songsViewModelProvider = ref.watch(songListViewModelProvider(databaseKey));
 
     return songsViewModelProvider.when(
       data: (data) => _listSongs(data),
-      error: (error, stackTrace) => Text("error $stackTrace"),
+      error: (error, stackTrace) => const Center(child: Text("Songs for this database are not available yet")),
       loading: () => _skeletonView(),
     );
   }

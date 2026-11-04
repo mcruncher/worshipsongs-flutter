@@ -40,5 +40,5 @@ flutter:
   uses-material-design: true
 
   assets:
-    - "assets/db/songs.sqlite"
+    - "assets/db/"
     - song_databases.json

@@ -26,12 +26,12 @@ void main() {
       // and
       var providerContainer = ProviderContainer.test(
         overrides: [
-          songRepositoryProvider.overrideWith((ref) => mockSongRepository),
+          songRepositoryProvider('tamil_worship_songs').overrideWith((ref) => mockSongRepository),
         ],
       );
 
       // when
-      await providerContainer.read(songListViewModelProvider.future);
+      await providerContainer.read(songListViewModelProvider('tamil_worship_songs').future);
 
       // then
       verify(mockSongRepository.findAll());

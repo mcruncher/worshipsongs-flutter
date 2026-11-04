@@ -27,7 +27,10 @@ class SongDatabaseView extends ConsumerWidget {
               return _SongDatabaseCard(
                 database: database,
                 selected: database.key == selectedKey,
-                onTap: () => ref.read(selectedSongDatabaseViewModelProvider.notifier).select(database.key),
+                onTap: () async {
+                  await ref.read(selectedSongDatabaseViewModelProvider.notifier).select(database.key);
+                  if (context.mounted) Navigator.of(context).popUntil((route) => route.isFirst);
+                },
               );
             }
           );
