@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/services.dart';
-import 'package:worship_songs/core/data/services/song_database_metadata_service.dart';
+import 'package:worship_songs/data/services/song_database_metadata_service.dart';
 
 class SongDatabaseMetadataServiceImpl implements SongDatabaseMetadataService {
   @override

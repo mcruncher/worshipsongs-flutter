@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:worship_songs/core/domain/models/song_database_metadata.dart';
-import 'package:worship_songs/core/utils/providers/song_database_providers.dart';
+import 'package:worship_songs/domain/models/song_database_metadata.dart';
+import 'package:worship_songs/utils/providers/song_database_providers.dart';
 
 class SongDatabaseView extends ConsumerWidget {
   const SongDatabaseView({super.key});
@@ -28,7 +28,7 @@ class SongDatabaseView extends ConsumerWidget {
                 database: database,
                 selected: database.key == selectedKey,
                 onTap: () async {
-                  await ref.read(selectedSongDatabaseViewModelProvider.notifier).select(database.key);
+                  await ref.read(selectedSongDatabaseViewModelProvider.notifier).onSelect(database.key);
                   if (context.mounted) Navigator.of(context).popUntil((route) => route.isFirst);
                 },
               );

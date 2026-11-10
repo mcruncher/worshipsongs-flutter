@@ -16,7 +16,7 @@ class SelectedSongDatabaseViewModel extends StateNotifier<AsyncValue<String?>> {
     state = AsyncValue.data(key);
   }
 
-  Future<void> select(String key) async {
+  Future<void> onSelect(String key) async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setString(preferenceKey, key);
     if (!mounted) return;

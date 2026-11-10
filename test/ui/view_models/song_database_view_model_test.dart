@@ -2,9 +2,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:worship_songs/core/domain/models/song_database_metadata.dart';
-import 'package:worship_songs/core/domain/repositories/song_database_metadata_repository.dart';
-import 'package:worship_songs/core/ui/view_models/song_database_view_model.dart';
+import 'package:worship_songs/domain/models/song_database_metadata.dart';
+import 'package:worship_songs/domain/repositories/song_database_metadata_repository.dart';
+import 'package:worship_songs/ui/view_models/song_database_view_model.dart';
 
 import 'song_database_view_model_test.mocks.dart';
 
@@ -18,10 +18,10 @@ void main() {
 
   group('SongDatabaseViewModelTest', () {
     const tamil = SongDatabaseMetadata(
-      key: 'tamil_worship_songs',
+      key: 'songs_tamil',
       name: 'Tamil Worship Songs',
       description: 'Tamil songs',
-      url: 'https://github.com/mcruncher/worshipsongs-db',
+      url: 'https://github.com/mcruncher/worshipsongs-db-dev',
       language: 'Tamil',
       openLpVersion: '2.4',
     );

@@ -17,7 +17,7 @@ void main() {
       var providerContainer = ProviderContainer.test();
 
       // when
-      var read = await providerContainer.read(databaseProvider('tamil_worship_songs').future);
+      var read = await providerContainer.read(databaseProvider('songs_tamil').future);
 
       // then
       expect(read.isOpen, true);

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:worship_songs/core/ui/views/song_database_view.dart';
-import 'package:worship_songs/core/utils/providers/song_database_providers.dart';
+import 'package:worship_songs/ui/views/song_database_view.dart';
+import 'package:worship_songs/utils/providers/song_database_providers.dart';
 import 'package:worship_songs/data/utils/theme_icon_utils.dart';
 import 'package:worship_songs/utils/notifiers/theme_change_notifier.dart';
 
@@ -11,9 +11,12 @@ class SettingsView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final selectedKey = ref.watch(selectedSongDatabaseViewModelProvider).value;
-    final databases = ref.watch(songDatabaseViewModelProvider).value ?? const [];
-    final selected = databases.where((database) => database.key == selectedKey).firstOrNull;
-    
+    final databases =
+        ref.watch(songDatabaseViewModelProvider).value ?? const [];
+    final selected = databases
+        .where((database) => database.key == selectedKey)
+        .firstOrNull;
+
     return Scaffold(
       appBar: AppBar(leading: BackButton()),
       body: Column(
@@ -21,14 +24,17 @@ class SettingsView extends ConsumerWidget {
         children: [
           Padding(
             padding: const EdgeInsets.all(16),
-            child: _DatabaseCard(name: selected?.name, language: selected?.language),
+            child: _DatabaseCard(
+              name: selected?.name,
+              language: selected?.language,
+            ),
           ),
           Row(
             spacing: 40,
-              children: [_createAppearanceLabel(), _AppearanceDropdown()],
-          )
+            children: [_createAppearanceLabel(), _AppearanceDropdown()],
+          ),
         ],
-      )
+      ),
     );
   }
 
@@ -58,49 +64,74 @@ class _DatabaseCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
-            children: [
-              Expanded(child: Text('Database', style: theme.textTheme.titleMedium)),
-              OutlinedButton(onPressed: () => Navigator.push(
-                context,
-                MaterialPageRoute(builder: (BuildContext context) => const SongDatabaseView())
-              ),
-              child: const Text('Configure')),
-            ],
-          ),
+          _header(context),
           const SizedBox(height: 12),
           Text('Currently Selected', style: theme.textTheme.bodySmall),
           const SizedBox(height: 8),
-          Container(
-            width: double.infinity,
-            padding: const EdgeInsets.all(16),
-            decoration: BoxDecoration(
-              color: theme.colorScheme.surface,
-              borderRadius: BorderRadius.circular(16),
-            ),
-            child: Row(
-              children: [
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        name ?? 'No database selected',
-                        style: theme.textTheme.titleSmall?.copyWith(fontWeight: FontWeight.bold),
-                      ),
-                      if (language != null) ...[
-                        const SizedBox(height: 4),
-                        Text(language!, style: theme.textTheme.bodySmall),
-                      ],
-                    ],
-                  ),
-                ),
-                if (name != null) const Icon(Icons.check_circle_outline),
-              ],
-            ),
-          ),
+          _selectedDatabase(context),
         ],
       ),
+    );
+  }
+
+  Widget _header(BuildContext context) {
+    return Row(
+      children: [
+        Expanded(
+          child: Text(
+            'Database',
+            style: Theme.of(context).textTheme.titleMedium,
+          ),
+        ),
+        OutlinedButton(
+          onPressed: () => Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (BuildContext context) => const SongDatabaseView(),
+            ),
+          ),
+          child: const Text('Configure'),
+        ),
+      ],
+    );
+  }
+
+  Widget _selectedDatabase(BuildContext context) {
+    final theme = Theme.of(context);
+
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: theme.colorScheme.surface,
+        borderRadius: BorderRadius.circular(16),
+      ),
+      child: Row(
+        children: [
+          Expanded(child: _databaseDetails(context)),
+          if (name != null) const Icon(Icons.check_circle_outline),
+        ],
+      ),
+    );
+  }
+
+  Widget _databaseDetails(BuildContext context) {
+    final theme = Theme.of(context);
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          name ?? 'No database selected',
+          style: theme.textTheme.titleSmall?.copyWith(
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        if (language != null) ...[
+          const SizedBox(height: 4),
+          Text(language!, style: theme.textTheme.bodySmall),
+        ],
+      ],
     );
   }
 }

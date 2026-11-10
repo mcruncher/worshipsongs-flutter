@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:worship_songs/core/ui/views/settings_view.dart';
+import 'package:worship_songs/ui/views/settings_view.dart';
 import 'package:worship_songs/ui/views/song_list_view.dart';
 
 class SongDatabaseSongsView extends StatelessWidget {
