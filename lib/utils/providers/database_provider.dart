@@ -9,5 +9,5 @@ part 'database_provider.g.dart';
 DatabaseService _databaseService(Ref ref) => DatabaseServiceImpl();
 
 @riverpod
-Future<Database> database(Ref ref) async =>
-    ref.watch(_databaseServiceProvider).getDatabase();
+Future<Database> database(Ref ref, String key) async =>
+    ref.watch(_databaseServiceProvider).getDatabase(key);
