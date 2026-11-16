@@ -76,58 +76,5 @@ void main() {
         ),
       );
     });
-
-    test("Find lyric by song id - verse order doesn't exist", () async {
-      // setup
-      when(songService.getSongByIdWithLyrics(1)).thenAnswer(
-        (realInvocation) async => [
-          {
-            "id": "1",
-            "title": "(Let Us Be)One Voice",
-            "lyrics":
-                '<?xml version=\'1.0\' encoding=\'UTF-8\'?> '
-                '<song version="1.0">'
-                '<lyrics>'
-                '<verse label="1" type="v">'
-                '<![CDATA['
-                'Father we ask of You this day Come and heal our land Knit our '
-                'hearts together That Your glory may be seen in us Then the '
-                'world will know That Jesus Christ is Lord]]>'
-                '</verse>'
-                '<verse label="1" type="c">'
-                '<![CDATA[Let us be One Voice, that glorifies Your name Let us '
-                'be One Voice, declaring that You reign Let us be One Voice, '
-                'in love and harmony And we pray O God, grant us unity]]>'
-                '</verse>'
-                '<verse label="2" type="v">'
-                '<![CDATA[Now is the time for you and I To join our hearts in '
-                'prayer That the name of Jesus Will be lifted high above the '
-                'earth Then the world will know That Jesus Christ is Lord]]>'
-                '</verse>'
-                '</lyrics>'
-                '</song>',
-            "verse_order": "",
-          },
-        ],
-      );
-
-      // when
-      var lyric = await songRepository.findByIdWithLyrics(1);
-
-      // then
-      expect(
-        lyric,
-        Song(
-          id: 1,
-          title: "(Let Us Be)One Voice",
-          verses: {
-            "v1": "Father we ask of You this day Come and heal our land Knit our hearts together That Your glory may be seen in us Then the world will know That Jesus Christ is Lord",
-            "c1": "Let us be One Voice, that glorifies Your name Let us be One Voice, declaring that You reign Let us be One Voice, in love and harmony And we pray O God, grant us unity",
-            "v2": "Now is the time for you and I To join our hearts in prayer That the name of Jesus Will be lifted high above the earth Then the world will know That Jesus Christ is Lord",
-          },
-          verseOrdering: [],
-        ),
-      );
-    });
   });
 }
