@@ -36,5 +36,6 @@ void main() {
       // then
       verify(mockSongRepository.findAll());
     });
+
   });
 }
