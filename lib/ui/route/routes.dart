@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 import 'package:worship_songs/ui/views/home_view.dart';
 import 'package:worship_songs/ui/views/lyrics_view.dart';
@@ -8,14 +9,17 @@ final route = GoRouter(
     GoRoute(
       path: "/",
       name: "Home",
-      builder: (context, state) => const HomeView(),
+      pageBuilder: (context, state) => CupertinoPage(child: HomeView()),
 
       routes: [
         GoRoute(
           path: "/:song_id(\\d+)",
           name: "Lyrics View",
-          builder: (context, state) =>
-              LyricsView(songId: int.parse(state.pathParameters["song_id"]!)),
+          pageBuilder: (context, state) => CupertinoPage(
+            child: LyricsView(
+              songId: int.parse(state.pathParameters["song_id"]!),
+            ),
+          ),
         ),
       ],
     ),
@@ -23,7 +27,7 @@ final route = GoRouter(
     GoRoute(
       path: "/settings",
       name: "Settings",
-      builder: (context, state) => const SettingsView(),
+      pageBuilder: (context, state) => CupertinoPage(child: SettingsView()),
     ),
   ],
 );

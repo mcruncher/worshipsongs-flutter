@@ -14,7 +14,7 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.8
-  material_ui: ^1.6.0
+  material_ui: ^1.11.1
   flutter_riverpod: ^3.4.3
   riverpod_annotation: ^4.0.7
   sqflite: ^2.4.4+2
@@ -24,6 +24,9 @@ dependencies:
   go_router: ^18.1.1
   xml: ^7.1.0
   slang_flutter: ^4.19.0
+  flutter_hooks: ^0.21.4
+  hooks_riverpod: ^3.5.0
+  material_hooks: ^0.1.0
 
 dev_dependencies:
   flutter_test:

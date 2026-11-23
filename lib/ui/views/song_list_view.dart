@@ -45,8 +45,8 @@ class SongListView extends ConsumerWidget {
   }
 
   Padding _pageTitle() => const Padding(
-    padding: EdgeInsets.only(bottom: 10),
-    child: Center(child: Text("Songs")),
+    padding: EdgeInsets.only(bottom: 10, left: 15),
+    child: Text("Songs"),
   );
 
   Padding _buildContent(Widget widget) => Padding(
