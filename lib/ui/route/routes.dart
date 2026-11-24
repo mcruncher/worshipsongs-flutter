@@ -1,15 +1,18 @@
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
-import 'package:worship_songs/ui/views/home_view.dart';
+import 'package:worship_songs/ui/components/common_navigation_view.dart';
 import 'package:worship_songs/ui/views/lyrics_view.dart';
 import 'package:worship_songs/ui/views/settings_view.dart';
+import 'package:worship_songs/ui/views/song_list_view.dart';
 
 final route = GoRouter(
   routes: [
     GoRoute(
       path: "/",
       name: "Home",
-      pageBuilder: (context, state) => CupertinoPage(child: HomeView()),
+      pageBuilder: (context, state) => CupertinoPage(
+        child: CommonNavigationView(path: "Home", child: SongListView()),
+      ),
 
       routes: [
         GoRoute(
@@ -27,7 +30,9 @@ final route = GoRouter(
     GoRoute(
       path: "/settings",
       name: "Settings",
-      pageBuilder: (context, state) => CupertinoPage(child: SettingsView()),
+      pageBuilder: (context, state) => CupertinoPage(
+        child: CommonNavigationView(path: "Settings", child: SettingsView()),
+      ),
     ),
   ],
 );
