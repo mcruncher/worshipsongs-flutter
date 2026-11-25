@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:worship_songs/ui/views/settings_view.dart';
+import 'package:go_router/go_router.dart';
 import 'package:worship_songs/ui/views/song_list_view.dart';
 
 class SongDatabaseSongsView extends StatelessWidget {
@@ -13,12 +13,7 @@ class SongDatabaseSongsView extends StatelessWidget {
       appBar: AppBar(
         leading: IconButton(
           icon: const Icon(Icons.settings_rounded),
-          onPressed: () => Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (BuildContext context) => const SettingsView(),
-            ),
-          ),
+          onPressed: () => context.pushNamed("Settings"),
         ),
         title: Text(databaseKey),
       ),

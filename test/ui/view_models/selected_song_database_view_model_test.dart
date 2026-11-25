@@ -4,7 +4,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:worship_songs/ui/view_models/selected_song_database_view_model.dart';
 
 void main() {
-  late SelectedSongDatabaseViewModel viewModel;
 
   group('SelectedSongDatabaseViewModelTest', () {
     test('Should save the selected song database', () async {

@@ -110,7 +110,7 @@ class _DatabaseCard extends StatelessWidget {
       child: Row(
         children: [
           Expanded(child: _databaseDetails(context)),
-          if (name != null) const Icon(Icons.check_circle_outline),
+          if (name != null) Icon(Icons.check_circle_outline, color: theme.colorScheme.primary),
         ],
       ),
     );
