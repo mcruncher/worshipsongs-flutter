@@ -8,9 +8,9 @@ import 'package:worship_songs/utils/providers/database_provider.dart';
 part 'song_provider.g.dart';
 
 @riverpod
-SongService _songService(Ref ref) =>
-    SongServiceImpl(database: ref.watch(databaseProvider.future));
+SongService _songService(Ref ref, String key) =>
+    SongServiceImpl(database: ref.watch(databaseProvider(key).future));
 
 @riverpod
-SongRepository songRepository(Ref ref) =>
-    SongRepositoryImpl(viewSongService: ref.watch(_songServiceProvider));
+SongRepository songRepository(Ref ref, String key) =>
+    SongRepositoryImpl(viewSongService: ref.watch(_songServiceProvider(key)));

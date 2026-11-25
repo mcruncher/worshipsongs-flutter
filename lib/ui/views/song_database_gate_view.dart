@@ -1,0 +1,20 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:worship_songs/ui/view_models/selected_song_database_view_model.dart';
+import 'package:worship_songs/ui/views/song_database_songs_view.dart';
+import 'package:worship_songs/ui/views/song_database_view.dart';
+
+class SongDatabaseGateView extends ConsumerWidget {
+  const SongDatabaseGateView({super.key});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final selected = ref.watch(selectedSongDatabaseViewModelProvider);
+
+    return selected.when(
+      data: (databaseKey) => databaseKey == null ? const SongDatabaseView() : SongDatabaseSongsView(databaseKey: databaseKey),
+      loading: () => const Scaffold(body: Center(child: CircularProgressIndicator())),
+      error: (err, stack) => const SongDatabaseView(),
+    );
+  }
+}

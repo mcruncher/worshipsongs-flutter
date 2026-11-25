@@ -7,6 +7,6 @@ part 'song_list_view_model.g.dart';
 @riverpod
 class SongListViewModel extends _$SongListViewModel {
   @override
-  FutureOr<List<Song>> build() async =>
-      ref.watch(songRepositoryProvider).findAll();
+  FutureOr<List<Song>> build(String key) async =>
+      ref.watch(songRepositoryProvider(key)).findAll();
 }

@@ -7,19 +7,19 @@ import 'package:sqflite/sqflite.dart';
 import 'database_service.dart';
 
 class DatabaseServiceImpl implements DatabaseService {
-  final _sqlFilename = "songs.sqlite";
 
   @override
-  Future<Database> getDatabase() async {
+  Future<Database> getDatabase(String key) async {
+    final sqlFilename = "$key.sqlite";
     String databasesPath = await getDatabasesPath();
-    var path = join(databasesPath, _sqlFilename);
+    var path = join(databasesPath, sqlFilename);
     var exists = await databaseExists(path);
 
     if (!exists) {
       await Directory(dirname(path)).create(recursive: true);
 
       ByteData data = await rootBundle.load(
-        url.join("assets/db", _sqlFilename),
+        url.join("assets/db", sqlFilename),
       );
 
       List<int> bytes = data.buffer.asUint8List(
