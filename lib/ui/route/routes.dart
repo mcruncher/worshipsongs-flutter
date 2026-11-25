@@ -1,9 +1,11 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:worship_songs/ui/components/common_navigation_view.dart';
 import 'package:worship_songs/ui/views/lyrics_view.dart';
 import 'package:worship_songs/ui/views/settings_view.dart';
 import 'package:worship_songs/ui/views/song_list_view.dart';
+import 'package:worship_songs/ui/views/song_search_view.dart';
 
 final route = GoRouter(
   routes: [
@@ -32,6 +34,17 @@ final route = GoRouter(
       name: "Settings",
       pageBuilder: (context, state) => CupertinoPage(
         child: CommonNavigationView(path: "Settings", child: SettingsView()),
+      ),
+    ),
+
+    GoRoute(
+      path: "/search",
+      name: "Search",
+      pageBuilder: (context, state) => CupertinoPage(
+        child: Scaffold(
+          appBar: AppBar(title: Text("Search", textAlign: TextAlign.start)),
+          body: SongSearchView(),
+        ),
       ),
     ),
   ],
