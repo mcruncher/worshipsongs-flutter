@@ -36,7 +36,7 @@ void main() {
       );
 
       // then
-      verify(mockSongRepository.findAll());
+      verify(mockSongRepository.findByName("test"));
     });
   });
 }
