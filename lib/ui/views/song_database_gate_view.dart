@@ -12,7 +12,7 @@ class SongDatabaseGateView extends ConsumerWidget {
     final selected = ref.watch(selectedSongDatabaseViewModelProvider);
 
     return selected.when(
-      data: (key) => key == null ? const SongDatabaseView() : SongDatabaseSongsView(databaseKey: key),
+      data: (databaseKey) => databaseKey == null ? const SongDatabaseView() : SongDatabaseSongsView(databaseKey: databaseKey),
       loading: () => const Scaffold(body: Center(child: CircularProgressIndicator())),
       error: (err, stack) => const SongDatabaseView(),
     );

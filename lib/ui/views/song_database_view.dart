@@ -20,17 +20,11 @@ class SongDatabaseView extends ConsumerWidget {
             return const Center(child: Text('No song databases available'));
           }
           return ListView.separated(
-              padding: const EdgeInsets.all(16),
-              itemCount: databases.length,
-              separatorBuilder: (context, index) => const SizedBox(height: 12),
-              itemBuilder: (context, index) {
-                final database = databases[index];
-                return _SongDatabaseCard(
-                  database: database,
-                  selected: database.key == selectedKey,
-                  onTap: () => _selectDatabase(context, ref, database),
-                );
-              }
+            padding: const EdgeInsets.all(16),
+            itemCount: databases.length,
+            separatorBuilder: (context, index) => const SizedBox(height: 12),
+            itemBuilder: (context, index) =>
+                _buildDatabaseCard(context, ref, databases[index], selectedKey),
           );
         },
         loading: () => const Center(child: CircularProgressIndicator()),
@@ -43,7 +37,8 @@ class SongDatabaseView extends ConsumerWidget {
               children: [
                 Text(err.toString(), textAlign: TextAlign.center),
                 FilledButton(
-                  onPressed: () => ref.invalidate(songDatabaseViewModelProvider),
+                  onPressed: () =>
+                      ref.invalidate(songDatabaseViewModelProvider),
                   child: const Text('Retry'),
                 ),
               ],
@@ -54,9 +49,27 @@ class SongDatabaseView extends ConsumerWidget {
     );
   }
 
-  Future<void> _selectDatabase(BuildContext context, WidgetRef ref, SongDatabaseMetadata database) async {
-    await ref.read(selectedSongDatabaseViewModelProvider.notifier).onSelect(database.key);
-    if (context.mounted) Navigator.of(context).popUntil((route) => route.isFirst);
+  Widget _buildDatabaseCard(
+    BuildContext context,
+    WidgetRef ref,
+    SongDatabaseMetadata database,
+    String? selectedKey,
+  ) => _SongDatabaseCard(
+    database: database,
+    selected: database.key == selectedKey,
+    onTap: () => _selectDatabase(context, ref, database),
+  );
+
+  Future<void> _selectDatabase(
+    BuildContext context,
+    WidgetRef ref,
+    SongDatabaseMetadata database,
+  ) async {
+    await ref
+        .read(selectedSongDatabaseViewModelProvider.notifier)
+        .onSelect(database.key);
+    if (context.mounted)
+      Navigator.of(context).popUntil((route) => route.isFirst);
   }
 }
 
@@ -65,36 +78,44 @@ class _SongDatabaseCard extends StatelessWidget {
   final bool selected;
   final VoidCallback onTap;
 
-  const _SongDatabaseCard(
-      {required this.database, required this.selected, required this.onTap});
+  const _SongDatabaseCard({
+    required this.database,
+    required this.selected,
+    required this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
     return Card(
-        clipBehavior: Clip.antiAlias,
-        child: InkWell(
-          onTap: onTap,
-          child: Padding(
-            padding: const EdgeInsets.all(16),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  children: [
-                    Expanded(child: Text(database.name,
-                        style: theme.textTheme.titleMedium?.copyWith(
-                            fontWeight: FontWeight.bold))),
-                    if (selected) Icon(Icons.check_circle, color: theme.colorScheme.primary),
-                  ],
-                ),
-                const SizedBox(height: 8),
-                Text(database.description, style: theme.textTheme.bodyMedium),
-              ],
-            ),
+      child: InkWell(
+        onTap: onTap,
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  Expanded(
+                    child: Text(
+                      database.name,
+                      style: theme.textTheme.titleMedium?.copyWith(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  if (selected)
+                    Icon(Icons.check_circle, color: theme.colorScheme.primary),
+                ],
+              ),
+              const SizedBox(height: 8),
+              Text(database.description, style: theme.textTheme.bodyMedium),
+            ],
           ),
-        )
+        ),
+      ),
     );
   }
 }
