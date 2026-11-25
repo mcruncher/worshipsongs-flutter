@@ -32,10 +32,7 @@ DropdownMenuThemeData _dropdownMenuThemeData() => DropdownMenuThemeData(
   ),
 );
 
-CardThemeData _cardThemeData() => CardThemeData(
-  clipBehavior: Clip.hardEdge,
-  margin: EdgeInsetsGeometry.only(top: 13, left: 10, right: 10),
-);
+CardThemeData _cardThemeData() => CardThemeData(clipBehavior: Clip.hardEdge);
 
 AppBarTheme _appBarTheme() => AppBarTheme(
   scrolledUnderElevation: 0,

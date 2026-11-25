@@ -3,6 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:worship_songs/ui/views/song_database_gate_view.dart';
 import 'package:worship_songs/theme.dart';
 import 'package:worship_songs/utils/notifiers/theme_change_notifier.dart';
+import 'package:worship_songs/ui/route/routes.dart';
+import 'package:worship_songs/utils/notifiers/theme_change_notifier.dart';
 
 void main() => runApp(ProviderScope(child: MyApp()));
 
@@ -12,11 +14,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) => ValueListenableBuilder(
     valueListenable: themeChangeNotifier,
-    builder: (context, value, child) => MaterialApp(
+    builder: (context, value, child) => MaterialApp.router(
       title: "Worship Song",
       theme: defaultLightTheme,
       darkTheme: defaultDarkTheme,
       themeMode: value,
+      routerConfig: route,
       home: const SongDatabaseGateView(),
     ),
   );
