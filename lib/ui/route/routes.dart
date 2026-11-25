@@ -36,16 +36,5 @@ final route = GoRouter(
         child: CommonNavigationView(path: "Settings", child: SettingsView()),
       ),
     ),
-
-    GoRoute(
-      path: "/search",
-      name: "Search",
-      pageBuilder: (context, state) => CupertinoPage(
-        child: Scaffold(
-          appBar: AppBar(title: Text("Search", textAlign: TextAlign.start)),
-          body: SongSearchView(),
-        ),
-      ),
-    ),
   ],
 );

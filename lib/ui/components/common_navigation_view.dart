@@ -9,14 +9,16 @@ class CommonNavigationView extends StatelessWidget {
     super.key,
     required this._child,
     required this._path,
+    this.pageTitle,
   });
 
   final Widget _child;
   final String _path;
+  final String? pageTitle;
 
   @override
   Widget build(BuildContext context) => Scaffold(
-    appBar: AppBar(),
+    appBar: AppBar(title: Text(pageTitle ?? ""), backgroundColor: Colors.transparent,),
     body: Stack(children: [_child, _buildBottomNavigation(context)]),
   );
 
@@ -59,15 +61,8 @@ class CommonNavigationView extends StatelessWidget {
       ),
       _buildNavigationItem(
         context: context,
-        icon: FontAwesomeIcons.music,
-        page: "Category",
-        displayName: "Artists",
-      ),
-      _buildNavigationItem(
-        context: context,
-        icon: FontAwesomeIcons.solidUser,
+        icon: FontAwesomeIcons.gear,
         page: "Settings",
-        displayName: "Account",
       ),
     ],
   );

@@ -5,6 +5,7 @@ import 'package:skeletonizer/skeletonizer.dart';
 import 'package:worship_songs/domain/models/song.dart';
 import 'package:worship_songs/ui/components/custom_card.dart';
 import 'package:worship_songs/ui/view_models/song_list_view_model.dart';
+import 'package:worship_songs/ui/views/song_search_view.dart';
 
 class SongListView extends ConsumerWidget {
   const SongListView({super.key});
@@ -20,14 +21,22 @@ class SongListView extends ConsumerWidget {
     );
   }
 
-  ListView _listSongs(List<Song> data) {
+  Widget _listSongs(List<Song> data) {
     return ListView.builder(
       shrinkWrap: true,
       scrollDirection: Axis.vertical,
-      itemCount: data.length + 1,
-      itemBuilder: (context, index) => _buildContent(
-        index == 0 ? _pageTitle() : _CardView(song: data.elementAt(index - 1)),
-      ),
+      itemCount: data.length + 2,
+      itemBuilder: (context, index) {
+        Widget content;
+        if (index == 0) {
+          content = _pageTitle();
+        } else if (index == 1) {
+          content = SongSearchView();
+        } else {
+          content = _CardView(song: data.elementAt(index - 2));
+        }
+        return _buildContent(content);
+      },
     );
   }
 

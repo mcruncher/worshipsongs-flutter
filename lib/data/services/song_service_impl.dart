@@ -20,6 +20,5 @@ class SongServiceImpl implements SongService {
         "songs",
         columns: ["id", "title"],
         where: "title like '%$name%'",
-        whereArgs: [name],
       );
 }
