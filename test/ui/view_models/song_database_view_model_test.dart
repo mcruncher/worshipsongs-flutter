@@ -5,6 +5,7 @@ import 'package:mockito/mockito.dart';
 import 'package:worship_songs/domain/models/song_database_metadata.dart';
 import 'package:worship_songs/domain/repositories/song_database_metadata_repository.dart';
 import 'package:worship_songs/ui/view_models/song_database_view_model.dart';
+import 'package:worship_songs/utils/providers/song_database_providers.dart';
 
 import 'song_database_view_model_test.mocks.dart';
 
@@ -17,7 +18,7 @@ void main() {
   });
 
   group('SongDatabaseViewModelTest', () {
-    const tamil = SongDatabaseMetadata(
+    final tamil = SongDatabaseMetadata(
       key: 'songs_tamil',
       name: 'Tamil Worship Songs',
       description: 'Tamil songs',
@@ -29,26 +30,31 @@ void main() {
     test('Should load the available song databases', () async {
       // given
       when(repository.findAll()).thenAnswer((_) async => [tamil]);
-      final viewModel = SongDatabaseViewModel(repository);
+      final container = ProviderContainer.test(
+        overrides: [songDatabaseMetadataRepositoryProvider.overrideWith((ref) => repository)],
+      );
 
       // when
-      await viewModel.loadData();
+      final databases = await container.read(songDatabaseViewModelProvider.future);
 
       // then
       verify(repository.findAll());
-      expect(viewModel.state.value, [tamil]);
+      expect(databases, [tamil]);
     });
 
     test('Should expose an error when loading fails', () async {
       // given
       when(repository.findAll()).thenAnswer((_) async => throw Exception('Failed to load'));
-      final viewModel = SongDatabaseViewModel(repository);
+      final container = ProviderContainer.test(
+        retry: (retryCount, error) => null,
+        overrides: [songDatabaseMetadataRepositoryProvider.overrideWith((ref) => repository)],
+      );
 
       // when
-      await viewModel.loadData();
+      await expectLater(container.read(songDatabaseViewModelProvider.future), throwsException);
 
       // then
-      expect(viewModel.state.hasError, true);
+      expect(container.read(songDatabaseViewModelProvider).hasError, true);
     });
   });
 }

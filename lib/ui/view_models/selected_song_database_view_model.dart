@@ -1,25 +1,22 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_riverpod/legacy.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class SelectedSongDatabaseViewModel extends StateNotifier<AsyncValue<String?>> {
+part 'selected_song_database_view_model.g.dart';
+
+@riverpod
+class SelectedSongDatabaseViewModel extends _$SelectedSongDatabaseViewModel {
   static const preferenceKey = 'selected_song_database_key';
 
-  SelectedSongDatabaseViewModel() : super(const AsyncValue.loading()) {
-    loadData();
-  }
-
-  Future<void> loadData() async {
+  @override
+  FutureOr<String?> build() async {
     final preference = await SharedPreferences.getInstance();
-    final key = preference.getString(preferenceKey);
-    if (!mounted) return;
-    state = AsyncValue.data(key);
+    return preference.getString(preferenceKey);
   }
 
   Future<void> onSelect(String key) async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setString(preferenceKey, key);
-    if (!mounted) return;
+    final preference = await SharedPreferences.getInstance();
+    await preference.setString(preferenceKey, key);
+    if (!ref.mounted) return;
     state = AsyncValue.data(key);
   }
 }

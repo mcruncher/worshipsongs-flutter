@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:worship_songs/ui/view_models/selected_song_database_view_model.dart';
+import 'package:worship_songs/ui/view_models/song_database_view_model.dart';
 import 'package:worship_songs/ui/views/song_database_view.dart';
-import 'package:worship_songs/utils/providers/song_database_providers.dart';
 import 'package:worship_songs/data/utils/theme_icon_utils.dart';
 import 'package:worship_songs/utils/notifiers/theme_change_notifier.dart';
 

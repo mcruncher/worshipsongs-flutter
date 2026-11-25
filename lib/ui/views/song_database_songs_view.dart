@@ -11,14 +11,16 @@ class SongDatabaseSongsView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          leading: IconButton(
-              icon: const Icon(Icons.settings_rounded),
-              onPressed: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (BuildContext context) => const SettingsView()),
-              ),
+        leading: IconButton(
+          icon: const Icon(Icons.settings_rounded),
+          onPressed: () => Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (BuildContext context) => const SettingsView(),
+            ),
           ),
-      title: Text(databaseKey),
+        ),
+        title: Text(databaseKey),
       ),
       body: SongListView(databaseKey: databaseKey),
     );

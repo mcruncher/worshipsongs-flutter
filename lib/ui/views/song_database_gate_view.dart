@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:worship_songs/ui/view_models/selected_song_database_view_model.dart';
 import 'package:worship_songs/ui/views/song_database_songs_view.dart';
 import 'package:worship_songs/ui/views/song_database_view.dart';
-import 'package:worship_songs/utils/providers/song_database_providers.dart';
 
 class SongDatabaseGateView extends ConsumerWidget {
   const SongDatabaseGateView({super.key});
