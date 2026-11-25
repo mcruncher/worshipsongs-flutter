@@ -18,8 +18,16 @@ class CommonNavigationView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-    appBar: AppBar(title: Text(pageTitle ?? ""), backgroundColor: Colors.transparent,),
-    body: Stack(children: [_child, _buildBottomNavigation(context)]),
+    appBar: AppBar(
+      title: Text(pageTitle ?? ""),
+      backgroundColor: Colors.transparent,
+    ),
+    body: Stack(
+      children: [
+        Padding(padding: const EdgeInsets.only(bottom: 70), child: _child),
+        _buildBottomNavigation(context),
+      ],
+    ),
   );
 
   Align _buildBottomNavigation(BuildContext context) => Align(
@@ -45,7 +53,7 @@ class CommonNavigationView extends StatelessWidget {
   BoxDecoration _navigationBoxDecoration(BuildContext context) => BoxDecoration(
     color: isLightMode(context) ? Colors.black38 : Colors.white38,
     borderRadius: BorderRadius.circular(25),
-    boxShadow: [BoxShadow(blurRadius: 4)],
+    boxShadow: [BoxShadow(blurRadius: 0)],
   );
 
   bool isLightMode(BuildContext context) =>
