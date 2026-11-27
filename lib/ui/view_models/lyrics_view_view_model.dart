@@ -9,4 +9,6 @@ class LyricsViewViewModel extends _$LyricsViewViewModel {
   @override
   FutureOr<Song> build(int songId) =>
       ref.watch(songRepositoryProvider).findByIdWithLyrics(songId);
+
+
 }

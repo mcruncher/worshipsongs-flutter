@@ -7,12 +7,9 @@ class SettingsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(leading: BackButton()),
-      body: Row(
-        spacing: 40,
-        children: [_createAppearanceLabel(), _AppearanceDropdown()],
-      ),
+    return Row(
+      spacing: 40,
+      children: [_createAppearanceLabel(), _AppearanceDropdown()],
     );
   }
 

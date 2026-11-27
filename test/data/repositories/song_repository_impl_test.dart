@@ -40,5 +40,30 @@ void main() {
         Song(id: 4, title: "baz song"),
       ]);
     });
+
+    test("findByName", () async {
+      // setup
+      when(songService.getSongByName("song")).thenAnswer(
+        (realInvocation) async => [
+          {"id": 1, "title": "Test song"},
+          {"id": 2, "title": "foo song"},
+          {"id": 3, "title": "bar song"},
+          {"id": 4, "title": "baz song"},
+        ],
+      );
+
+      var songRepositoryImpl = SongRepositoryImpl(viewSongService: songService);
+
+      // when
+      var songs = await songRepositoryImpl.findByName("song");
+
+      // then
+      expectLater(songs, [
+        Song(id: 1, title: "Test song"),
+        Song(id: 2, title: "foo song"),
+        Song(id: 3, title: "bar song"),
+        Song(id: 4, title: "baz song"),
+      ]);
+    });
   });
 }

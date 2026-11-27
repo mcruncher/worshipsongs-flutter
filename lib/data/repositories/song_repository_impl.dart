@@ -33,4 +33,19 @@ class SongRepositoryImpl implements SongRepository {
       verseOrdering: LyricsParser.getOrdering(song),
     );
   }
+
+  @override
+  Future<List<Song>> findByName(String name) async {
+    List<Song> songs = [];
+
+    for (var element in await _viewSongService.getSongByName(name)) {
+      songs.add(
+        Song(
+          id: int.parse(element["id"].toString()),
+          title: element["title"].toString(),
+        ),
+      );
+    }
+    return songs;
+  }
 }

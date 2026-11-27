@@ -32,7 +32,7 @@ DropdownMenuThemeData _dropdownMenuThemeData() => DropdownMenuThemeData(
   ),
 );
 
-CardThemeData _cardThemeData() => CardThemeData(clipBehavior: Clip.hardEdge);
+CardThemeData _cardThemeData() => CardThemeData(clipBehavior: Clip.hardEdge, surfaceTintColor: Colors.transparent);
 
 AppBarTheme _appBarTheme() => AppBarTheme(
   scrolledUnderElevation: 0,
