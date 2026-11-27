@@ -31,7 +31,7 @@ class SongListView extends ConsumerWidget {
         if (index == 0) {
           content = _pageTitle();
         } else if (index == 1) {
-          content = SongSearchView();
+          content = const SongSearchView();
         } else {
           content = _CardView(song: data.elementAt(index - 2));
         }

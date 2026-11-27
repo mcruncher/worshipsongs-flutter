@@ -53,7 +53,6 @@ class CommonNavigationView extends StatelessWidget {
   BoxDecoration _navigationBoxDecoration(BuildContext context) => BoxDecoration(
     color: isLightMode(context) ? Colors.black38 : Colors.white38,
     borderRadius: BorderRadius.circular(25),
-    boxShadow: [BoxShadow(blurRadius: 0)],
   );
 
   bool isLightMode(BuildContext context) =>
@@ -86,7 +85,7 @@ class CommonNavigationView extends StatelessWidget {
       height: 50,
       width: 70,
       decoration: _itemBoxDecoration(page),
-      padding: EdgeInsets.only(top: 8),
+      padding: const EdgeInsets.only(top: 8),
       child: Column(
         children: [
           _iconNavigationItem(icon, page),

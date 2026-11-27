@@ -30,7 +30,7 @@ class SongSearchView extends HookConsumerWidget {
         barElevation: const WidgetStatePropertyAll<double>(1.0),
         dividerColor: Colors.transparent,
         barHintText: "What are you searching for?",
-        barHintStyle: WidgetStatePropertyAll(TextStyle(fontSize: 14)),
+        barHintStyle: const WidgetStatePropertyAll(TextStyle(fontSize: 14)),
         constraints: const BoxConstraints(minHeight: 40, maxHeight: 40),
         barShape: WidgetStatePropertyAll(
           RoundedRectangleBorder(

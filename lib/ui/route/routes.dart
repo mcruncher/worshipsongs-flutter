@@ -12,7 +12,7 @@ final route = GoRouter(
     GoRoute(
       path: "/",
       name: "Home",
-      pageBuilder: (context, state) => CupertinoPage(
+      pageBuilder: (context, state) => const CupertinoPage(
         child: CommonNavigationView(path: "Home", child: SongListView()),
       ),
 
@@ -32,7 +32,7 @@ final route = GoRouter(
     GoRoute(
       path: "/settings",
       name: "Settings",
-      pageBuilder: (context, state) => CupertinoPage(
+      pageBuilder: (context, state) => const CupertinoPage(
         child: CommonNavigationView(path: "Settings", child: SettingsView()),
       ),
     ),
